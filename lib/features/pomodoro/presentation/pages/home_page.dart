@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:k_pomodoro/core/constants/locale_keys.dart';
 import 'package:k_pomodoro/core/utils/date_utils.dart';
 import 'package:k_pomodoro/features/pomodoro/enums/pomodoro_enum.dart';
@@ -17,13 +18,16 @@ class HomePage extends ConsumerWidget {
     final homeStateNotifyProvider = ref.read(homeStateProvider.notifier);
 
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () => context.push('/settings'),
+          ),
+        ],
+      ),
       body: Column(
         children: [
-          const SizedBox(height: 50),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [Icon(Icons.settings, size: 30), SizedBox(width: 20)],
-          ),
           Expanded(
             child: Container(
               width: double.infinity,

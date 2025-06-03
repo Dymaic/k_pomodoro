@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:k_pomodoro/core/route/router.dart';
+import 'package:k_pomodoro/features/pomodoro/domain/repositories/setting/setting_local_repo.dart';
 import 'package:k_skin/k_skin.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  SettingLocalRepo.getInstance();
 
   runApp(
     EasyLocalization(

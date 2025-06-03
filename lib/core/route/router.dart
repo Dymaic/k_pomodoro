@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:k_pomodoro/features/pomodoro/presentation/pages/home_page.dart';
+import 'package:k_pomodoro/features/pomodoro/presentation/pages/setting_page.dart';
 
 final router = GoRouter(
   routes: [
@@ -9,5 +10,11 @@ final router = GoRouter(
         return const HomePage();
       }, 
     ),
+    GoRoute(
+      path: "/settings",
+      builder: (context, state) {
+        return const SettingPage();
+      },
+    )
   ],
 );
