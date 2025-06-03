@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Settings {
 
- String get theme; String get locale; bool get notificationsEnabled; int get pomodoroDuration; int get shortBreakDuration; int get longBreakDuration; int get pomodoroCountBeforeLongBreak;
+ String get theme; String get locale; bool get notificationsEnabled; int get pomodoroDuration; int get shortBreakDuration; int get longBreakDuration; int get pomodoroCountBeforeLongBreak; bool get isAutoStartPomodoro; bool get isAutoStartBreak;
 /// Create a copy of Settings
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26,16 +26,16 @@ $SettingsCopyWith<Settings> get copyWith => _$SettingsCopyWithImpl<Settings>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Settings&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.locale, locale) || other.locale == locale)&&(identical(other.notificationsEnabled, notificationsEnabled) || other.notificationsEnabled == notificationsEnabled)&&(identical(other.pomodoroDuration, pomodoroDuration) || other.pomodoroDuration == pomodoroDuration)&&(identical(other.shortBreakDuration, shortBreakDuration) || other.shortBreakDuration == shortBreakDuration)&&(identical(other.longBreakDuration, longBreakDuration) || other.longBreakDuration == longBreakDuration)&&(identical(other.pomodoroCountBeforeLongBreak, pomodoroCountBeforeLongBreak) || other.pomodoroCountBeforeLongBreak == pomodoroCountBeforeLongBreak));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Settings&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.locale, locale) || other.locale == locale)&&(identical(other.notificationsEnabled, notificationsEnabled) || other.notificationsEnabled == notificationsEnabled)&&(identical(other.pomodoroDuration, pomodoroDuration) || other.pomodoroDuration == pomodoroDuration)&&(identical(other.shortBreakDuration, shortBreakDuration) || other.shortBreakDuration == shortBreakDuration)&&(identical(other.longBreakDuration, longBreakDuration) || other.longBreakDuration == longBreakDuration)&&(identical(other.pomodoroCountBeforeLongBreak, pomodoroCountBeforeLongBreak) || other.pomodoroCountBeforeLongBreak == pomodoroCountBeforeLongBreak)&&(identical(other.isAutoStartPomodoro, isAutoStartPomodoro) || other.isAutoStartPomodoro == isAutoStartPomodoro)&&(identical(other.isAutoStartBreak, isAutoStartBreak) || other.isAutoStartBreak == isAutoStartBreak));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,theme,locale,notificationsEnabled,pomodoroDuration,shortBreakDuration,longBreakDuration,pomodoroCountBeforeLongBreak);
+int get hashCode => Object.hash(runtimeType,theme,locale,notificationsEnabled,pomodoroDuration,shortBreakDuration,longBreakDuration,pomodoroCountBeforeLongBreak,isAutoStartPomodoro,isAutoStartBreak);
 
 @override
 String toString() {
-  return 'Settings(theme: $theme, locale: $locale, notificationsEnabled: $notificationsEnabled, pomodoroDuration: $pomodoroDuration, shortBreakDuration: $shortBreakDuration, longBreakDuration: $longBreakDuration, pomodoroCountBeforeLongBreak: $pomodoroCountBeforeLongBreak)';
+  return 'Settings(theme: $theme, locale: $locale, notificationsEnabled: $notificationsEnabled, pomodoroDuration: $pomodoroDuration, shortBreakDuration: $shortBreakDuration, longBreakDuration: $longBreakDuration, pomodoroCountBeforeLongBreak: $pomodoroCountBeforeLongBreak, isAutoStartPomodoro: $isAutoStartPomodoro, isAutoStartBreak: $isAutoStartBreak)';
 }
 
 
@@ -46,7 +46,7 @@ abstract mixin class $SettingsCopyWith<$Res>  {
   factory $SettingsCopyWith(Settings value, $Res Function(Settings) _then) = _$SettingsCopyWithImpl;
 @useResult
 $Res call({
- String theme, String locale, bool notificationsEnabled, int pomodoroDuration, int shortBreakDuration, int longBreakDuration, int pomodoroCountBeforeLongBreak
+ String theme, String locale, bool notificationsEnabled, int pomodoroDuration, int shortBreakDuration, int longBreakDuration, int pomodoroCountBeforeLongBreak, bool isAutoStartPomodoro, bool isAutoStartBreak
 });
 
 
@@ -63,7 +63,7 @@ class _$SettingsCopyWithImpl<$Res>
 
 /// Create a copy of Settings
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? theme = null,Object? locale = null,Object? notificationsEnabled = null,Object? pomodoroDuration = null,Object? shortBreakDuration = null,Object? longBreakDuration = null,Object? pomodoroCountBeforeLongBreak = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? theme = null,Object? locale = null,Object? notificationsEnabled = null,Object? pomodoroDuration = null,Object? shortBreakDuration = null,Object? longBreakDuration = null,Object? pomodoroCountBeforeLongBreak = null,Object? isAutoStartPomodoro = null,Object? isAutoStartBreak = null,}) {
   return _then(_self.copyWith(
 theme: null == theme ? _self.theme : theme // ignore: cast_nullable_to_non_nullable
 as String,locale: null == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
@@ -72,7 +72,9 @@ as bool,pomodoroDuration: null == pomodoroDuration ? _self.pomodoroDuration : po
 as int,shortBreakDuration: null == shortBreakDuration ? _self.shortBreakDuration : shortBreakDuration // ignore: cast_nullable_to_non_nullable
 as int,longBreakDuration: null == longBreakDuration ? _self.longBreakDuration : longBreakDuration // ignore: cast_nullable_to_non_nullable
 as int,pomodoroCountBeforeLongBreak: null == pomodoroCountBeforeLongBreak ? _self.pomodoroCountBeforeLongBreak : pomodoroCountBeforeLongBreak // ignore: cast_nullable_to_non_nullable
-as int,
+as int,isAutoStartPomodoro: null == isAutoStartPomodoro ? _self.isAutoStartPomodoro : isAutoStartPomodoro // ignore: cast_nullable_to_non_nullable
+as bool,isAutoStartBreak: null == isAutoStartBreak ? _self.isAutoStartBreak : isAutoStartBreak // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 
@@ -83,7 +85,7 @@ as int,
 
 
 class _Settings implements Settings {
-  const _Settings({required this.theme, required this.locale, required this.notificationsEnabled, required this.pomodoroDuration, required this.shortBreakDuration, required this.longBreakDuration, required this.pomodoroCountBeforeLongBreak});
+  const _Settings({required this.theme, required this.locale, required this.notificationsEnabled, required this.pomodoroDuration, required this.shortBreakDuration, required this.longBreakDuration, required this.pomodoroCountBeforeLongBreak, required this.isAutoStartPomodoro, required this.isAutoStartBreak});
   
 
 @override final  String theme;
@@ -93,6 +95,8 @@ class _Settings implements Settings {
 @override final  int shortBreakDuration;
 @override final  int longBreakDuration;
 @override final  int pomodoroCountBeforeLongBreak;
+@override final  bool isAutoStartPomodoro;
+@override final  bool isAutoStartBreak;
 
 /// Create a copy of Settings
 /// with the given fields replaced by the non-null parameter values.
@@ -104,16 +108,16 @@ _$SettingsCopyWith<_Settings> get copyWith => __$SettingsCopyWithImpl<_Settings>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Settings&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.locale, locale) || other.locale == locale)&&(identical(other.notificationsEnabled, notificationsEnabled) || other.notificationsEnabled == notificationsEnabled)&&(identical(other.pomodoroDuration, pomodoroDuration) || other.pomodoroDuration == pomodoroDuration)&&(identical(other.shortBreakDuration, shortBreakDuration) || other.shortBreakDuration == shortBreakDuration)&&(identical(other.longBreakDuration, longBreakDuration) || other.longBreakDuration == longBreakDuration)&&(identical(other.pomodoroCountBeforeLongBreak, pomodoroCountBeforeLongBreak) || other.pomodoroCountBeforeLongBreak == pomodoroCountBeforeLongBreak));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Settings&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.locale, locale) || other.locale == locale)&&(identical(other.notificationsEnabled, notificationsEnabled) || other.notificationsEnabled == notificationsEnabled)&&(identical(other.pomodoroDuration, pomodoroDuration) || other.pomodoroDuration == pomodoroDuration)&&(identical(other.shortBreakDuration, shortBreakDuration) || other.shortBreakDuration == shortBreakDuration)&&(identical(other.longBreakDuration, longBreakDuration) || other.longBreakDuration == longBreakDuration)&&(identical(other.pomodoroCountBeforeLongBreak, pomodoroCountBeforeLongBreak) || other.pomodoroCountBeforeLongBreak == pomodoroCountBeforeLongBreak)&&(identical(other.isAutoStartPomodoro, isAutoStartPomodoro) || other.isAutoStartPomodoro == isAutoStartPomodoro)&&(identical(other.isAutoStartBreak, isAutoStartBreak) || other.isAutoStartBreak == isAutoStartBreak));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,theme,locale,notificationsEnabled,pomodoroDuration,shortBreakDuration,longBreakDuration,pomodoroCountBeforeLongBreak);
+int get hashCode => Object.hash(runtimeType,theme,locale,notificationsEnabled,pomodoroDuration,shortBreakDuration,longBreakDuration,pomodoroCountBeforeLongBreak,isAutoStartPomodoro,isAutoStartBreak);
 
 @override
 String toString() {
-  return 'Settings(theme: $theme, locale: $locale, notificationsEnabled: $notificationsEnabled, pomodoroDuration: $pomodoroDuration, shortBreakDuration: $shortBreakDuration, longBreakDuration: $longBreakDuration, pomodoroCountBeforeLongBreak: $pomodoroCountBeforeLongBreak)';
+  return 'Settings(theme: $theme, locale: $locale, notificationsEnabled: $notificationsEnabled, pomodoroDuration: $pomodoroDuration, shortBreakDuration: $shortBreakDuration, longBreakDuration: $longBreakDuration, pomodoroCountBeforeLongBreak: $pomodoroCountBeforeLongBreak, isAutoStartPomodoro: $isAutoStartPomodoro, isAutoStartBreak: $isAutoStartBreak)';
 }
 
 
@@ -124,7 +128,7 @@ abstract mixin class _$SettingsCopyWith<$Res> implements $SettingsCopyWith<$Res>
   factory _$SettingsCopyWith(_Settings value, $Res Function(_Settings) _then) = __$SettingsCopyWithImpl;
 @override @useResult
 $Res call({
- String theme, String locale, bool notificationsEnabled, int pomodoroDuration, int shortBreakDuration, int longBreakDuration, int pomodoroCountBeforeLongBreak
+ String theme, String locale, bool notificationsEnabled, int pomodoroDuration, int shortBreakDuration, int longBreakDuration, int pomodoroCountBeforeLongBreak, bool isAutoStartPomodoro, bool isAutoStartBreak
 });
 
 
@@ -141,7 +145,7 @@ class __$SettingsCopyWithImpl<$Res>
 
 /// Create a copy of Settings
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? theme = null,Object? locale = null,Object? notificationsEnabled = null,Object? pomodoroDuration = null,Object? shortBreakDuration = null,Object? longBreakDuration = null,Object? pomodoroCountBeforeLongBreak = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? theme = null,Object? locale = null,Object? notificationsEnabled = null,Object? pomodoroDuration = null,Object? shortBreakDuration = null,Object? longBreakDuration = null,Object? pomodoroCountBeforeLongBreak = null,Object? isAutoStartPomodoro = null,Object? isAutoStartBreak = null,}) {
   return _then(_Settings(
 theme: null == theme ? _self.theme : theme // ignore: cast_nullable_to_non_nullable
 as String,locale: null == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
@@ -150,7 +154,9 @@ as bool,pomodoroDuration: null == pomodoroDuration ? _self.pomodoroDuration : po
 as int,shortBreakDuration: null == shortBreakDuration ? _self.shortBreakDuration : shortBreakDuration // ignore: cast_nullable_to_non_nullable
 as int,longBreakDuration: null == longBreakDuration ? _self.longBreakDuration : longBreakDuration // ignore: cast_nullable_to_non_nullable
 as int,pomodoroCountBeforeLongBreak: null == pomodoroCountBeforeLongBreak ? _self.pomodoroCountBeforeLongBreak : pomodoroCountBeforeLongBreak // ignore: cast_nullable_to_non_nullable
-as int,
+as int,isAutoStartPomodoro: null == isAutoStartPomodoro ? _self.isAutoStartPomodoro : isAutoStartPomodoro // ignore: cast_nullable_to_non_nullable
+as bool,isAutoStartBreak: null == isAutoStartBreak ? _self.isAutoStartBreak : isAutoStartBreak // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 

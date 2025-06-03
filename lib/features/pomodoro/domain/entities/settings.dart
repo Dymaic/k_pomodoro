@@ -12,6 +12,8 @@ abstract class Settings with _$Settings {
     required int shortBreakDuration,
     required int longBreakDuration,
     required int pomodoroCountBeforeLongBreak,
+    required bool isAutoStartPomodoro,
+    required bool isAutoStartBreak,
   }) = _Settings;
 
   factory Settings.defaultSettings() => Settings(
@@ -22,5 +24,7 @@ abstract class Settings with _$Settings {
     shortBreakDuration: 5,
     longBreakDuration: 15,
     pomodoroCountBeforeLongBreak: 4,
+    isAutoStartPomodoro: false,
+    isAutoStartBreak: false
   );
 }
