@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:k_pomodoro/core/route/router.dart';
 import 'package:k_skin/k_skin.dart';
 
@@ -23,14 +24,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return KThemeProvider(
-      child: MaterialApp.router(
-        title: 'KPomodoro',
-        localizationsDelegates: context.localizationDelegates,
-        supportedLocales: context.supportedLocales,
-        locale: context.locale,
-        theme: KThemeManager.instance.currentTheme.toFlutterThemeData(),
-        routerConfig: router,
+    return ProviderScope(
+      child: KThemeProvider(
+        child: MaterialApp.router(
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
+          theme: KThemeManager.instance.currentTheme.toFlutterThemeData(),
+          routerConfig: router,
+        ),
       ),
     );
   }
