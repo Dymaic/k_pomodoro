@@ -46,7 +46,7 @@ class HomeStateNotifyProvider extends StateNotifier<HomeState?> {
             state!.state == PomodoroState.pause ||
             state!.state == PomodoroState.breakComplete)) {
       // Change state to running
-      state = state!.copyWith(state: PomodoroState.running);
+      state = state!.copyWith(state: PomodoroState.running,);
 
       // Start countdown with work completion logic
       _startCountdownTimer(() {
