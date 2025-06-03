@@ -1,0 +1,9 @@
+{
+    "AppName": "My Application",
+    "Home_Start": "Start",
+    "Home_Pause": "Pause",
+    "Home_Reset": "Reset",
+    "Home_Settings": "Settings",
+    "Home_About": "About",
+    "Home_Statistics": "Statistics"
+}

@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 /// 
 /// author: kmookay
 /// date: 2023-10-01
-class DateUtils {
+class KDateUtils {
   /// 格式化日期为字符串
   static String formatDate(DateTime date, {String pattern = 'yyyy-MM-dd'}) {
     return DateFormat(pattern).format(date);
@@ -120,5 +120,12 @@ class DateUtils {
     final hours = minutes ~/ 60;
     final remainingMinutes = minutes % 60;
     return '${hours}h ${remainingMinutes}m';
+  }
+
+  /// 格式化持续时间为 mm:ss 格式
+  static String formatDurationToMinutesSeconds(Duration duration) {
+    final minutes = duration.inMinutes;
+    final seconds = duration.inSeconds.remainder(60);
+    return '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
   }
 }
