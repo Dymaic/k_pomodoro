@@ -29,16 +29,27 @@ class HomePage extends ConsumerWidget {
               width: double.infinity,
               padding: EdgeInsets.all(20),
               alignment: Alignment.center,
-              child: Text(
-                KDateUtils.formatDurationToMinutesSeconds(
-                  Duration(seconds: homeState?.releaseTime ?? 0),
-                ),
-                style: KThemeManager.instance.currentTheme.typography.bodyLarge
-                    .copyWith(
-                      fontSize: 60,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'monospace',
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    KDateUtils.formatDurationToMinutesSeconds(
+                      Duration(seconds: homeState?.releaseTime ?? 0),
                     ),
+                    style: KThemeManager
+                        .instance
+                        .currentTheme
+                        .typography
+                        .bodyLarge
+                        .copyWith(
+                          fontSize: 60,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'monospace',
+                        ),
+                  ),
+                  SizedBox(height: 20),
+                  _buildPomodoroCountIndicator(homeState),
+                ],
               ),
             ),
           ),
@@ -121,5 +132,41 @@ class HomePage extends ConsumerWidget {
           ),
         ];
     }
+  }
+
+  /// build pomodoro count indicator
+  Widget _buildPomodoroCountIndicator(HomeState? homeState) {
+    const int count = 4;
+    if (homeState == null) {
+      return Container();
+    }
+
+    int currentPomodoroIndex = homeState.pomodoroCount;
+    bool isRunningOrPause =
+        homeState.state == PomodoroState.running ||
+        homeState.state == PomodoroState.pause;
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: List.generate(count, (index) {
+        bool isCompleted = index < currentPomodoroIndex;
+        bool isCurrent = index == currentPomodoroIndex;
+
+        return Container(
+          margin: EdgeInsets.only(right: index < count - 1 ? 10 : 0),
+          width: (isCurrent && isRunningOrPause) ? 20 : 10,
+          height: 10,
+          decoration: BoxDecoration(
+            color: isCompleted || (isCurrent && isRunningOrPause)
+                ? Colors.black
+                : Colors.transparent,
+            border: !isCompleted && !(isCurrent && isRunningOrPause)
+                ? Border.all(color: Colors.black, width: 1)
+                : null,
+            borderRadius: BorderRadius.circular(5),
+          ),
+        );
+      }),
+    );
   }
 }
