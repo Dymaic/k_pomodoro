@@ -8,7 +8,7 @@ import 'package:k_skin/k_skin.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  SettingLocalRepo.getInstance();
+  await SettingLocalRepo.getInstance().init();
 
   runApp(
     EasyLocalization(

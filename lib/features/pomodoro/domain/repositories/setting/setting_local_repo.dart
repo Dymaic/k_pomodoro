@@ -1,4 +1,5 @@
 import 'package:hive/hive.dart';
+import 'package:k_pomodoro/core/constants/app_constants.dart';
 import 'package:path_provider/path_provider.dart';
 
 /// 本地设置仓库
@@ -7,9 +8,7 @@ class SettingLocalRepo {
   late Box<dynamic> _settingsBox;
   static SettingLocalRepo? _instance;
 
-  SettingLocalRepo._() {
-    init();
-  }
+  SettingLocalRepo._();
 
   /// 获取单例实例
   static SettingLocalRepo getInstance() {
@@ -31,7 +30,10 @@ class SettingLocalRepo {
   }
 
   int getPomodoroMinutes() {
-    return _settingsBox.get('pomodoro_minutes', defaultValue: 25);
+    return _settingsBox.get(
+      'pomodoro_minutes',
+      defaultValue: AppConstants.defaultPomodoroDuration,
+    );
   }
 
   // 短休息时长设置
@@ -40,7 +42,10 @@ class SettingLocalRepo {
   }
 
   int getShortBreakMinutes() {
-    return _settingsBox.get('short_break_minutes', defaultValue: 5);
+    return _settingsBox.get(
+      'short_break_minutes',
+      defaultValue: AppConstants.defaultShortBreakDuration,
+    );
   }
 
   // 长休息时长设置
@@ -49,7 +54,10 @@ class SettingLocalRepo {
   }
 
   int getLongBreakMinutes() {
-    return _settingsBox.get('long_break_minutes', defaultValue: 15);
+    return _settingsBox.get(
+      'long_break_minutes',
+      defaultValue: AppConstants.defaultLongBreakDuration,
+    );
   }
 
   // 长休息间隔设置
@@ -58,7 +66,10 @@ class SettingLocalRepo {
   }
 
   int getLongBreakInterval() {
-    return _settingsBox.get('long_break_interval', defaultValue: 4);
+    return _settingsBox.get(
+      'long_break_interval',
+      defaultValue: AppConstants.defaultLongBreakPomodoroCount,
+    );
   }
 
   // 自动开始下一个番茄钟

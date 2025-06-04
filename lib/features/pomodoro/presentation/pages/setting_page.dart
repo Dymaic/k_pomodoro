@@ -47,8 +47,6 @@ class _SettingPageState extends ConsumerState<SettingPage> {
     _longBreakIntervalController.text = settingState
         .pomodoroCountBeforeLongBreak
         .toString();
-    var isAutoBreak = settingState.isAutoStartBreak;
-    var isAutoStart = settingState.isAutoStartPomodoro;
 
     return Scaffold(
       appBar: AppBar(
@@ -131,9 +129,11 @@ class _SettingPageState extends ConsumerState<SettingPage> {
             _buildSettingRow(
               LocaleKeys.Setting_AutoBreak,
               Switch(
-                value: isAutoBreak,
+                value: settingState.isAutoStartBreak,
                 onChanged: (value) {
-                  isAutoBreak = value;
+                  settingStateNotifier.updateSettings(
+                    settingState.copyWith(isAutoStartBreak: value),
+                  );
                 },
               ),
             ),
@@ -141,9 +141,11 @@ class _SettingPageState extends ConsumerState<SettingPage> {
             _buildSettingRow(
               LocaleKeys.Setting_AutoStart,
               Switch(
-                value: isAutoStart,
+                value: settingState.isAutoStartPomodoro,
                 onChanged: (value) {
-                  isAutoStart = value;
+                  settingStateNotifier.updateSettings(
+                    settingState.copyWith(isAutoStartPomodoro: value),
+                  );
                 },
               ),
             ),

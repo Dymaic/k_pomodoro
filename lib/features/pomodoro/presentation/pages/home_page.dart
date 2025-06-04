@@ -7,6 +7,7 @@ import 'package:k_pomodoro/core/utils/date_utils.dart';
 import 'package:k_pomodoro/features/pomodoro/enums/pomodoro_enum.dart';
 import 'package:k_pomodoro/features/pomodoro/presentation/providers/home_providers.dart';
 import 'package:k_pomodoro/features/pomodoro/presentation/providers/home_state.dart';
+import 'package:k_pomodoro/features/pomodoro/presentation/providers/setting_providers.dart';
 import 'package:k_skin/k_skin.dart';
 
 class HomePage extends ConsumerWidget {
@@ -16,6 +17,13 @@ class HomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final homeState = ref.watch(homeStateProvider);
     final homeStateNotifyProvider = ref.read(homeStateProvider.notifier);
+
+    ref.listen(settingStateProvider, (previous, next) {
+      // Listen for changes in settings and update the home state accordingly
+      if (homeState != null) {
+        homeStateNotifyProvider.updateSettings(next);
+      }
+    });
 
     return Scaffold(
       appBar: AppBar(
@@ -52,7 +60,7 @@ class HomePage extends ConsumerWidget {
                         ),
                   ),
                   SizedBox(height: 20),
-                  _buildPomodoroCountIndicator(homeState),
+                  _buildPomodoroCountIndicator(ref, homeState),
                 ],
               ),
             ),
@@ -139,12 +147,14 @@ class HomePage extends ConsumerWidget {
   }
 
   /// build pomodoro count indicator
-  Widget _buildPomodoroCountIndicator(HomeState? homeState) {
-    const int count = 4;
+  Widget _buildPomodoroCountIndicator(WidgetRef ref, HomeState? homeState) {
     if (homeState == null) {
       return Container();
     }
 
+    final settingState = ref.watch(settingStateProvider);
+    final int count = settingState.pomodoroCountBeforeLongBreak;
+    
     int currentPomodoroIndex = homeState.pomodoroCount;
     bool isRunningOrPause =
         homeState.state == PomodoroState.running ||
