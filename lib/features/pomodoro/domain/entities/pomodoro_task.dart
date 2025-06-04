@@ -1,30 +1,83 @@
+import 'package:isar/isar.dart';
 
-import 'package:freezed_annotation/freezed_annotation.dart';
+part 'pomodoro_task.g.dart';
 
-part 'pomodoro_task.freezed.dart';
+@collection
+class PomodoroTask {
+  Id id = Isar.autoIncrement;
+  
+  late String title;
+  String? description;
+  bool isCompleted = false;
+  late DateTime createdAt;
+  DateTime? completedAt;
+  int pomodoroCount = 0;
 
-@freezed
-abstract class PomodoroTask with _$PomodoroTask {
-  const factory PomodoroTask({
-    required String id,
-    required String title,
-    required String description,
-    required DateTime createdAt,
-    required DateTime updatedAt,
-    required int pomodoroCount,
-    required int completedPomodoros,
-    required bool isActive,
-  }) = _PomodoroTask;
+  PomodoroTask();
 
-  factory PomodoroTask.empty() => PomodoroTask(
-        id: '',
-        title: '',
-        description: '',
-        createdAt: DateTime.now(),
-        updatedAt: DateTime.now(),
-        pomodoroCount: 0,
-        completedPomodoros: 0,
-        isActive: false,
-      );
+  PomodoroTask.create({
+    required this.title,
+    this.description,
+    this.isCompleted = false,
+    required this.createdAt,
+    this.completedAt,
+    this.pomodoroCount = 0,
+  });
 
+  // 工厂方法
+  factory PomodoroTask.empty() {
+    return PomodoroTask.create(title: '',
+      createdAt: DateTime.now(),
+    );
+  }
+
+  // 复制方法
+  PomodoroTask copyWith({
+    Id? id,
+    String? title,
+    String? description,
+    bool? isCompleted,
+    DateTime? createdAt,
+    DateTime? completedAt,
+    int? pomodoroCount,
+  }) {
+    final task = PomodoroTask.create(
+      title: title ?? this.title,
+      description: description ?? this.description,
+      isCompleted: isCompleted ?? this.isCompleted,
+      createdAt: createdAt ?? this.createdAt,
+      completedAt: completedAt ?? this.completedAt,
+      pomodoroCount: pomodoroCount ?? this.pomodoroCount,
+    );
+    task.id = id ?? this.id;
+    return task;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PomodoroTask &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          title == other.title &&
+          description == other.description &&
+          isCompleted == other.isCompleted &&
+          createdAt == other.createdAt &&
+          completedAt == other.completedAt &&
+          pomodoroCount == other.pomodoroCount;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      title.hashCode ^
+      description.hashCode ^
+      isCompleted.hashCode ^
+      createdAt.hashCode ^
+      completedAt.hashCode ^
+      pomodoroCount.hashCode;
+
+  @override
+  String toString() {
+    return 'PomodoroTask{id: $id, title: $title, description: $description, isCompleted: $isCompleted, createdAt: $createdAt, completedAt: $completedAt, pomodoroCount: $pomodoroCount}';
+  }
 }

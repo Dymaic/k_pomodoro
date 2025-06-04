@@ -1,4 +1,3 @@
-// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -10,157 +9,306 @@ part of 'settings.dart';
 // FreezedGenerator
 // **************************************************************************
 
-// dart format off
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+
 /// @nodoc
 mixin _$Settings {
+  String get theme => throw _privateConstructorUsedError;
+  String get locale => throw _privateConstructorUsedError;
+  bool get notificationsEnabled => throw _privateConstructorUsedError;
+  int get pomodoroDuration => throw _privateConstructorUsedError;
+  int get shortBreakDuration => throw _privateConstructorUsedError;
+  int get longBreakDuration => throw _privateConstructorUsedError;
+  int get pomodoroCountBeforeLongBreak => throw _privateConstructorUsedError;
+  bool get isAutoStartPomodoro => throw _privateConstructorUsedError;
+  bool get isAutoStartBreak => throw _privateConstructorUsedError;
 
- String get theme; String get locale; bool get notificationsEnabled; int get pomodoroDuration; int get shortBreakDuration; int get longBreakDuration; int get pomodoroCountBeforeLongBreak; bool get isAutoStartPomodoro; bool get isAutoStartBreak;
-/// Create a copy of Settings
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$SettingsCopyWith<Settings> get copyWith => _$SettingsCopyWithImpl<Settings>(this as Settings, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Settings&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.locale, locale) || other.locale == locale)&&(identical(other.notificationsEnabled, notificationsEnabled) || other.notificationsEnabled == notificationsEnabled)&&(identical(other.pomodoroDuration, pomodoroDuration) || other.pomodoroDuration == pomodoroDuration)&&(identical(other.shortBreakDuration, shortBreakDuration) || other.shortBreakDuration == shortBreakDuration)&&(identical(other.longBreakDuration, longBreakDuration) || other.longBreakDuration == longBreakDuration)&&(identical(other.pomodoroCountBeforeLongBreak, pomodoroCountBeforeLongBreak) || other.pomodoroCountBeforeLongBreak == pomodoroCountBeforeLongBreak)&&(identical(other.isAutoStartPomodoro, isAutoStartPomodoro) || other.isAutoStartPomodoro == isAutoStartPomodoro)&&(identical(other.isAutoStartBreak, isAutoStartBreak) || other.isAutoStartBreak == isAutoStartBreak));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,theme,locale,notificationsEnabled,pomodoroDuration,shortBreakDuration,longBreakDuration,pomodoroCountBeforeLongBreak,isAutoStartPomodoro,isAutoStartBreak);
-
-@override
-String toString() {
-  return 'Settings(theme: $theme, locale: $locale, notificationsEnabled: $notificationsEnabled, pomodoroDuration: $pomodoroDuration, shortBreakDuration: $shortBreakDuration, longBreakDuration: $longBreakDuration, pomodoroCountBeforeLongBreak: $pomodoroCountBeforeLongBreak, isAutoStartPomodoro: $isAutoStartPomodoro, isAutoStartBreak: $isAutoStartBreak)';
-}
-
-
+  @JsonKey(ignore: true)
+  $SettingsCopyWith<Settings> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $SettingsCopyWith<$Res>  {
-  factory $SettingsCopyWith(Settings value, $Res Function(Settings) _then) = _$SettingsCopyWithImpl;
-@useResult
-$Res call({
- String theme, String locale, bool notificationsEnabled, int pomodoroDuration, int shortBreakDuration, int longBreakDuration, int pomodoroCountBeforeLongBreak, bool isAutoStartPomodoro, bool isAutoStartBreak
-});
-
-
-
-
+abstract class $SettingsCopyWith<$Res> {
+  factory $SettingsCopyWith(Settings value, $Res Function(Settings) then) =
+      _$SettingsCopyWithImpl<$Res, Settings>;
+  @useResult
+  $Res call(
+      {String theme,
+      String locale,
+      bool notificationsEnabled,
+      int pomodoroDuration,
+      int shortBreakDuration,
+      int longBreakDuration,
+      int pomodoroCountBeforeLongBreak,
+      bool isAutoStartPomodoro,
+      bool isAutoStartBreak});
 }
+
 /// @nodoc
-class _$SettingsCopyWithImpl<$Res>
+class _$SettingsCopyWithImpl<$Res, $Val extends Settings>
     implements $SettingsCopyWith<$Res> {
-  _$SettingsCopyWithImpl(this._self, this._then);
+  _$SettingsCopyWithImpl(this._value, this._then);
 
-  final Settings _self;
-  final $Res Function(Settings) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
-/// Create a copy of Settings
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? theme = null,Object? locale = null,Object? notificationsEnabled = null,Object? pomodoroDuration = null,Object? shortBreakDuration = null,Object? longBreakDuration = null,Object? pomodoroCountBeforeLongBreak = null,Object? isAutoStartPomodoro = null,Object? isAutoStartBreak = null,}) {
-  return _then(_self.copyWith(
-theme: null == theme ? _self.theme : theme // ignore: cast_nullable_to_non_nullable
-as String,locale: null == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
-as String,notificationsEnabled: null == notificationsEnabled ? _self.notificationsEnabled : notificationsEnabled // ignore: cast_nullable_to_non_nullable
-as bool,pomodoroDuration: null == pomodoroDuration ? _self.pomodoroDuration : pomodoroDuration // ignore: cast_nullable_to_non_nullable
-as int,shortBreakDuration: null == shortBreakDuration ? _self.shortBreakDuration : shortBreakDuration // ignore: cast_nullable_to_non_nullable
-as int,longBreakDuration: null == longBreakDuration ? _self.longBreakDuration : longBreakDuration // ignore: cast_nullable_to_non_nullable
-as int,pomodoroCountBeforeLongBreak: null == pomodoroCountBeforeLongBreak ? _self.pomodoroCountBeforeLongBreak : pomodoroCountBeforeLongBreak // ignore: cast_nullable_to_non_nullable
-as int,isAutoStartPomodoro: null == isAutoStartPomodoro ? _self.isAutoStartPomodoro : isAutoStartPomodoro // ignore: cast_nullable_to_non_nullable
-as bool,isAutoStartBreak: null == isAutoStartBreak ? _self.isAutoStartBreak : isAutoStartBreak // ignore: cast_nullable_to_non_nullable
-as bool,
-  ));
-}
-
-}
-
-
-/// @nodoc
-
-
-class _Settings implements Settings {
-  const _Settings({required this.theme, required this.locale, required this.notificationsEnabled, required this.pomodoroDuration, required this.shortBreakDuration, required this.longBreakDuration, required this.pomodoroCountBeforeLongBreak, required this.isAutoStartPomodoro, required this.isAutoStartBreak});
-  
-
-@override final  String theme;
-@override final  String locale;
-@override final  bool notificationsEnabled;
-@override final  int pomodoroDuration;
-@override final  int shortBreakDuration;
-@override final  int longBreakDuration;
-@override final  int pomodoroCountBeforeLongBreak;
-@override final  bool isAutoStartPomodoro;
-@override final  bool isAutoStartBreak;
-
-/// Create a copy of Settings
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$SettingsCopyWith<_Settings> get copyWith => __$SettingsCopyWithImpl<_Settings>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Settings&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.locale, locale) || other.locale == locale)&&(identical(other.notificationsEnabled, notificationsEnabled) || other.notificationsEnabled == notificationsEnabled)&&(identical(other.pomodoroDuration, pomodoroDuration) || other.pomodoroDuration == pomodoroDuration)&&(identical(other.shortBreakDuration, shortBreakDuration) || other.shortBreakDuration == shortBreakDuration)&&(identical(other.longBreakDuration, longBreakDuration) || other.longBreakDuration == longBreakDuration)&&(identical(other.pomodoroCountBeforeLongBreak, pomodoroCountBeforeLongBreak) || other.pomodoroCountBeforeLongBreak == pomodoroCountBeforeLongBreak)&&(identical(other.isAutoStartPomodoro, isAutoStartPomodoro) || other.isAutoStartPomodoro == isAutoStartPomodoro)&&(identical(other.isAutoStartBreak, isAutoStartBreak) || other.isAutoStartBreak == isAutoStartBreak));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,theme,locale,notificationsEnabled,pomodoroDuration,shortBreakDuration,longBreakDuration,pomodoroCountBeforeLongBreak,isAutoStartPomodoro,isAutoStartBreak);
-
-@override
-String toString() {
-  return 'Settings(theme: $theme, locale: $locale, notificationsEnabled: $notificationsEnabled, pomodoroDuration: $pomodoroDuration, shortBreakDuration: $shortBreakDuration, longBreakDuration: $longBreakDuration, pomodoroCountBeforeLongBreak: $pomodoroCountBeforeLongBreak, isAutoStartPomodoro: $isAutoStartPomodoro, isAutoStartBreak: $isAutoStartBreak)';
-}
-
-
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? theme = null,
+    Object? locale = null,
+    Object? notificationsEnabled = null,
+    Object? pomodoroDuration = null,
+    Object? shortBreakDuration = null,
+    Object? longBreakDuration = null,
+    Object? pomodoroCountBeforeLongBreak = null,
+    Object? isAutoStartPomodoro = null,
+    Object? isAutoStartBreak = null,
+  }) {
+    return _then(_value.copyWith(
+      theme: null == theme
+          ? _value.theme
+          : theme // ignore: cast_nullable_to_non_nullable
+              as String,
+      locale: null == locale
+          ? _value.locale
+          : locale // ignore: cast_nullable_to_non_nullable
+              as String,
+      notificationsEnabled: null == notificationsEnabled
+          ? _value.notificationsEnabled
+          : notificationsEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
+      pomodoroDuration: null == pomodoroDuration
+          ? _value.pomodoroDuration
+          : pomodoroDuration // ignore: cast_nullable_to_non_nullable
+              as int,
+      shortBreakDuration: null == shortBreakDuration
+          ? _value.shortBreakDuration
+          : shortBreakDuration // ignore: cast_nullable_to_non_nullable
+              as int,
+      longBreakDuration: null == longBreakDuration
+          ? _value.longBreakDuration
+          : longBreakDuration // ignore: cast_nullable_to_non_nullable
+              as int,
+      pomodoroCountBeforeLongBreak: null == pomodoroCountBeforeLongBreak
+          ? _value.pomodoroCountBeforeLongBreak
+          : pomodoroCountBeforeLongBreak // ignore: cast_nullable_to_non_nullable
+              as int,
+      isAutoStartPomodoro: null == isAutoStartPomodoro
+          ? _value.isAutoStartPomodoro
+          : isAutoStartPomodoro // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isAutoStartBreak: null == isAutoStartBreak
+          ? _value.isAutoStartBreak
+          : isAutoStartBreak // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract mixin class _$SettingsCopyWith<$Res> implements $SettingsCopyWith<$Res> {
-  factory _$SettingsCopyWith(_Settings value, $Res Function(_Settings) _then) = __$SettingsCopyWithImpl;
-@override @useResult
-$Res call({
- String theme, String locale, bool notificationsEnabled, int pomodoroDuration, int shortBreakDuration, int longBreakDuration, int pomodoroCountBeforeLongBreak, bool isAutoStartPomodoro, bool isAutoStartBreak
-});
-
-
-
-
+abstract class _$$SettingsImplCopyWith<$Res>
+    implements $SettingsCopyWith<$Res> {
+  factory _$$SettingsImplCopyWith(
+          _$SettingsImpl value, $Res Function(_$SettingsImpl) then) =
+      __$$SettingsImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String theme,
+      String locale,
+      bool notificationsEnabled,
+      int pomodoroDuration,
+      int shortBreakDuration,
+      int longBreakDuration,
+      int pomodoroCountBeforeLongBreak,
+      bool isAutoStartPomodoro,
+      bool isAutoStartBreak});
 }
+
 /// @nodoc
-class __$SettingsCopyWithImpl<$Res>
-    implements _$SettingsCopyWith<$Res> {
-  __$SettingsCopyWithImpl(this._self, this._then);
+class __$$SettingsImplCopyWithImpl<$Res>
+    extends _$SettingsCopyWithImpl<$Res, _$SettingsImpl>
+    implements _$$SettingsImplCopyWith<$Res> {
+  __$$SettingsImplCopyWithImpl(
+      _$SettingsImpl _value, $Res Function(_$SettingsImpl) _then)
+      : super(_value, _then);
 
-  final _Settings _self;
-  final $Res Function(_Settings) _then;
-
-/// Create a copy of Settings
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? theme = null,Object? locale = null,Object? notificationsEnabled = null,Object? pomodoroDuration = null,Object? shortBreakDuration = null,Object? longBreakDuration = null,Object? pomodoroCountBeforeLongBreak = null,Object? isAutoStartPomodoro = null,Object? isAutoStartBreak = null,}) {
-  return _then(_Settings(
-theme: null == theme ? _self.theme : theme // ignore: cast_nullable_to_non_nullable
-as String,locale: null == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
-as String,notificationsEnabled: null == notificationsEnabled ? _self.notificationsEnabled : notificationsEnabled // ignore: cast_nullable_to_non_nullable
-as bool,pomodoroDuration: null == pomodoroDuration ? _self.pomodoroDuration : pomodoroDuration // ignore: cast_nullable_to_non_nullable
-as int,shortBreakDuration: null == shortBreakDuration ? _self.shortBreakDuration : shortBreakDuration // ignore: cast_nullable_to_non_nullable
-as int,longBreakDuration: null == longBreakDuration ? _self.longBreakDuration : longBreakDuration // ignore: cast_nullable_to_non_nullable
-as int,pomodoroCountBeforeLongBreak: null == pomodoroCountBeforeLongBreak ? _self.pomodoroCountBeforeLongBreak : pomodoroCountBeforeLongBreak // ignore: cast_nullable_to_non_nullable
-as int,isAutoStartPomodoro: null == isAutoStartPomodoro ? _self.isAutoStartPomodoro : isAutoStartPomodoro // ignore: cast_nullable_to_non_nullable
-as bool,isAutoStartBreak: null == isAutoStartBreak ? _self.isAutoStartBreak : isAutoStartBreak // ignore: cast_nullable_to_non_nullable
-as bool,
-  ));
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? theme = null,
+    Object? locale = null,
+    Object? notificationsEnabled = null,
+    Object? pomodoroDuration = null,
+    Object? shortBreakDuration = null,
+    Object? longBreakDuration = null,
+    Object? pomodoroCountBeforeLongBreak = null,
+    Object? isAutoStartPomodoro = null,
+    Object? isAutoStartBreak = null,
+  }) {
+    return _then(_$SettingsImpl(
+      theme: null == theme
+          ? _value.theme
+          : theme // ignore: cast_nullable_to_non_nullable
+              as String,
+      locale: null == locale
+          ? _value.locale
+          : locale // ignore: cast_nullable_to_non_nullable
+              as String,
+      notificationsEnabled: null == notificationsEnabled
+          ? _value.notificationsEnabled
+          : notificationsEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
+      pomodoroDuration: null == pomodoroDuration
+          ? _value.pomodoroDuration
+          : pomodoroDuration // ignore: cast_nullable_to_non_nullable
+              as int,
+      shortBreakDuration: null == shortBreakDuration
+          ? _value.shortBreakDuration
+          : shortBreakDuration // ignore: cast_nullable_to_non_nullable
+              as int,
+      longBreakDuration: null == longBreakDuration
+          ? _value.longBreakDuration
+          : longBreakDuration // ignore: cast_nullable_to_non_nullable
+              as int,
+      pomodoroCountBeforeLongBreak: null == pomodoroCountBeforeLongBreak
+          ? _value.pomodoroCountBeforeLongBreak
+          : pomodoroCountBeforeLongBreak // ignore: cast_nullable_to_non_nullable
+              as int,
+      isAutoStartPomodoro: null == isAutoStartPomodoro
+          ? _value.isAutoStartPomodoro
+          : isAutoStartPomodoro // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isAutoStartBreak: null == isAutoStartBreak
+          ? _value.isAutoStartBreak
+          : isAutoStartBreak // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
+/// @nodoc
 
+class _$SettingsImpl implements _Settings {
+  const _$SettingsImpl(
+      {required this.theme,
+      required this.locale,
+      required this.notificationsEnabled,
+      required this.pomodoroDuration,
+      required this.shortBreakDuration,
+      required this.longBreakDuration,
+      required this.pomodoroCountBeforeLongBreak,
+      required this.isAutoStartPomodoro,
+      required this.isAutoStartBreak});
+
+  @override
+  final String theme;
+  @override
+  final String locale;
+  @override
+  final bool notificationsEnabled;
+  @override
+  final int pomodoroDuration;
+  @override
+  final int shortBreakDuration;
+  @override
+  final int longBreakDuration;
+  @override
+  final int pomodoroCountBeforeLongBreak;
+  @override
+  final bool isAutoStartPomodoro;
+  @override
+  final bool isAutoStartBreak;
+
+  @override
+  String toString() {
+    return 'Settings(theme: $theme, locale: $locale, notificationsEnabled: $notificationsEnabled, pomodoroDuration: $pomodoroDuration, shortBreakDuration: $shortBreakDuration, longBreakDuration: $longBreakDuration, pomodoroCountBeforeLongBreak: $pomodoroCountBeforeLongBreak, isAutoStartPomodoro: $isAutoStartPomodoro, isAutoStartBreak: $isAutoStartBreak)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SettingsImpl &&
+            (identical(other.theme, theme) || other.theme == theme) &&
+            (identical(other.locale, locale) || other.locale == locale) &&
+            (identical(other.notificationsEnabled, notificationsEnabled) ||
+                other.notificationsEnabled == notificationsEnabled) &&
+            (identical(other.pomodoroDuration, pomodoroDuration) ||
+                other.pomodoroDuration == pomodoroDuration) &&
+            (identical(other.shortBreakDuration, shortBreakDuration) ||
+                other.shortBreakDuration == shortBreakDuration) &&
+            (identical(other.longBreakDuration, longBreakDuration) ||
+                other.longBreakDuration == longBreakDuration) &&
+            (identical(other.pomodoroCountBeforeLongBreak,
+                    pomodoroCountBeforeLongBreak) ||
+                other.pomodoroCountBeforeLongBreak ==
+                    pomodoroCountBeforeLongBreak) &&
+            (identical(other.isAutoStartPomodoro, isAutoStartPomodoro) ||
+                other.isAutoStartPomodoro == isAutoStartPomodoro) &&
+            (identical(other.isAutoStartBreak, isAutoStartBreak) ||
+                other.isAutoStartBreak == isAutoStartBreak));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      theme,
+      locale,
+      notificationsEnabled,
+      pomodoroDuration,
+      shortBreakDuration,
+      longBreakDuration,
+      pomodoroCountBeforeLongBreak,
+      isAutoStartPomodoro,
+      isAutoStartBreak);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SettingsImplCopyWith<_$SettingsImpl> get copyWith =>
+      __$$SettingsImplCopyWithImpl<_$SettingsImpl>(this, _$identity);
 }
 
-// dart format on
+abstract class _Settings implements Settings {
+  const factory _Settings(
+      {required final String theme,
+      required final String locale,
+      required final bool notificationsEnabled,
+      required final int pomodoroDuration,
+      required final int shortBreakDuration,
+      required final int longBreakDuration,
+      required final int pomodoroCountBeforeLongBreak,
+      required final bool isAutoStartPomodoro,
+      required final bool isAutoStartBreak}) = _$SettingsImpl;
+
+  @override
+  String get theme;
+  @override
+  String get locale;
+  @override
+  bool get notificationsEnabled;
+  @override
+  int get pomodoroDuration;
+  @override
+  int get shortBreakDuration;
+  @override
+  int get longBreakDuration;
+  @override
+  int get pomodoroCountBeforeLongBreak;
+  @override
+  bool get isAutoStartPomodoro;
+  @override
+  bool get isAutoStartBreak;
+  @override
+  @JsonKey(ignore: true)
+  _$$SettingsImplCopyWith<_$SettingsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

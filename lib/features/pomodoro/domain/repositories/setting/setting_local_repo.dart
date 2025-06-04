@@ -21,7 +21,7 @@ class SettingLocalRepo {
     final directory = await getApplicationDocumentsDirectory();
     Hive.init(directory.path);
 
-    _settingsBox = await Hive.openBox('settings');
+    _settingsBox = await Hive.openBox('setting');
   }
 
   // 番茄钟时长设置

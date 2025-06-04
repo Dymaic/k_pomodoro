@@ -16,7 +16,7 @@ class HomeStateNotifyProvider extends StateNotifier<HomeState?> {
   /// Default work session: 25 minutes, idle state
   HomeStateNotifyProvider(Settings settings) : super(null) {
     state = HomeState(
-      currentTask: PomodoroTask.empty(), // No task selected initially
+      currentTask: null, // No task selected initially
       releaseTime: settings.pomodoroDuration, // Default to 25 minutes
       pomodoroCount: 0, // Number of completed pomodoros
       state: PomodoroState.idle, // Initial state is idle
@@ -96,7 +96,7 @@ class HomeStateNotifyProvider extends StateNotifier<HomeState?> {
       _stopCountdownTimer();
       // Reset to initial state with default values
       state = state!.copyWith(
-        currentTask: PomodoroTask.empty(),
+        currentTask: null,
         releaseTime: _defaultPomodoroDuration, // Reset to 25 minutes
         pomodoroCount: 0,
         state: PomodoroState.idle,

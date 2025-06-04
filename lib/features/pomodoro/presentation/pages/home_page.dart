@@ -27,6 +27,10 @@ class HomePage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.list),
+          onPressed: () => context.push('/tasks'),
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
@@ -44,6 +48,8 @@ class HomePage extends ConsumerWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  _buildCurrentTaskWidget(context, ref, homeState),
+                  SizedBox(height: 20),
                   Text(
                     KDateUtils.formatDurationToMinutesSeconds(
                       Duration(seconds: homeState?.releaseTime ?? 0),
@@ -154,7 +160,7 @@ class HomePage extends ConsumerWidget {
 
     final settingState = ref.watch(settingStateProvider);
     final int count = settingState.pomodoroCountBeforeLongBreak;
-    
+
     int currentPomodoroIndex = homeState.pomodoroCount;
     bool isRunningOrPause =
         homeState.state == PomodoroState.running ||
@@ -181,6 +187,49 @@ class HomePage extends ConsumerWidget {
           ),
         );
       }),
+    );
+  }
+
+  /// 当前任务显示组件
+  Widget _buildCurrentTaskWidget(
+    BuildContext context,
+    WidgetRef ref,
+    HomeState? homeState,
+  ) {
+    if (homeState?.currentTask == null) {
+      return Card(
+        child: ListTile(
+          leading: const Icon(Icons.task_alt),
+          title: const Text('未选择任务'),
+          subtitle: const Text('点击选择一个任务开始番茄钟'),
+          trailing: ElevatedButton(
+            onPressed: () => context.go('/tasks'),
+            child: const Text('选择任务'),
+          ),
+        ),
+      );
+    }
+
+    final task = homeState!.currentTask!;
+    return Card(
+      child: ListTile(
+        leading: const Icon(Icons.task_alt, color: Colors.green),
+        title: Text(task.title),
+        subtitle: Text(task.description ?? '无描述'),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Chip(
+              label: Text('${task.pomodoroCount}'),
+              avatar: const Icon(Icons.timer, size: 16),
+            ),
+            IconButton(
+              icon: const Icon(Icons.change_circle),
+              onPressed: () => context.go('/tasks'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
