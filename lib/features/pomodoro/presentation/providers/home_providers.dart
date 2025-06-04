@@ -123,8 +123,8 @@ class HomeStateNotifyProvider extends StateNotifier<HomeState?> {
       return; // No state initialized
     }
 
-    if (state!.pomodoroCount == _defaultLongBreakPomodoroCount) {
-      // If 4 pomodoros completed, start long break
+    if (state!.pomodoroCount % _defaultLongBreakPomodoroCount == 0) {
+      // Every 4 completed pomodoros triggers a long break
       state = state!.copyWith(
         state: PomodoroState.longBreak,
         releaseTime: _defaultLongBreakDuration,
