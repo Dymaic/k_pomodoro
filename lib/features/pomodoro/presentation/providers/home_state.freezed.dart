@@ -1,4 +1,3 @@
-// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -10,181 +9,225 @@ part of 'home_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
-// dart format off
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+
 /// @nodoc
 mixin _$HomeState {
+  PomodoroTask? get currentTask => throw _privateConstructorUsedError;
+  int get releaseTime => throw _privateConstructorUsedError;
+  int get pomodoroCount => throw _privateConstructorUsedError;
+  PomodoroState get state => throw _privateConstructorUsedError;
+  Settings get settings => throw _privateConstructorUsedError;
 
- PomodoroTask get currentTask; int get releaseTime; int get pomodoroCount; PomodoroState get state; Settings get settings;
-/// Create a copy of HomeState
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$HomeStateCopyWith<HomeState> get copyWith => _$HomeStateCopyWithImpl<HomeState>(this as HomeState, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeState&&(identical(other.currentTask, currentTask) || other.currentTask == currentTask)&&(identical(other.releaseTime, releaseTime) || other.releaseTime == releaseTime)&&(identical(other.pomodoroCount, pomodoroCount) || other.pomodoroCount == pomodoroCount)&&(identical(other.state, state) || other.state == state)&&(identical(other.settings, settings) || other.settings == settings));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,currentTask,releaseTime,pomodoroCount,state,settings);
-
-@override
-String toString() {
-  return 'HomeState(currentTask: $currentTask, releaseTime: $releaseTime, pomodoroCount: $pomodoroCount, state: $state, settings: $settings)';
-}
-
-
+  @JsonKey(ignore: true)
+  $HomeStateCopyWith<HomeState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $HomeStateCopyWith<$Res>  {
-  factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) _then) = _$HomeStateCopyWithImpl;
-@useResult
-$Res call({
- PomodoroTask currentTask, int releaseTime, int pomodoroCount, PomodoroState state, Settings settings
-});
+abstract class $HomeStateCopyWith<$Res> {
+  factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
+      _$HomeStateCopyWithImpl<$Res, HomeState>;
+  @useResult
+  $Res call(
+      {PomodoroTask? currentTask,
+      int releaseTime,
+      int pomodoroCount,
+      PomodoroState state,
+      Settings settings});
 
-
-$PomodoroTaskCopyWith<$Res> get currentTask;$SettingsCopyWith<$Res> get settings;
-
+  $SettingsCopyWith<$Res> get settings;
 }
+
 /// @nodoc
-class _$HomeStateCopyWithImpl<$Res>
+class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
     implements $HomeStateCopyWith<$Res> {
-  _$HomeStateCopyWithImpl(this._self, this._then);
+  _$HomeStateCopyWithImpl(this._value, this._then);
 
-  final HomeState _self;
-  final $Res Function(HomeState) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
-/// Create a copy of HomeState
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? currentTask = null,Object? releaseTime = null,Object? pomodoroCount = null,Object? state = null,Object? settings = null,}) {
-  return _then(_self.copyWith(
-currentTask: null == currentTask ? _self.currentTask : currentTask // ignore: cast_nullable_to_non_nullable
-as PomodoroTask,releaseTime: null == releaseTime ? _self.releaseTime : releaseTime // ignore: cast_nullable_to_non_nullable
-as int,pomodoroCount: null == pomodoroCount ? _self.pomodoroCount : pomodoroCount // ignore: cast_nullable_to_non_nullable
-as int,state: null == state ? _self.state : state // ignore: cast_nullable_to_non_nullable
-as PomodoroState,settings: null == settings ? _self.settings : settings // ignore: cast_nullable_to_non_nullable
-as Settings,
-  ));
-}
-/// Create a copy of HomeState
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$PomodoroTaskCopyWith<$Res> get currentTask {
-  
-  return $PomodoroTaskCopyWith<$Res>(_self.currentTask, (value) {
-    return _then(_self.copyWith(currentTask: value));
-  });
-}/// Create a copy of HomeState
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$SettingsCopyWith<$Res> get settings {
-  
-  return $SettingsCopyWith<$Res>(_self.settings, (value) {
-    return _then(_self.copyWith(settings: value));
-  });
-}
-}
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? currentTask = freezed,
+    Object? releaseTime = null,
+    Object? pomodoroCount = null,
+    Object? state = null,
+    Object? settings = null,
+  }) {
+    return _then(_value.copyWith(
+      currentTask: freezed == currentTask
+          ? _value.currentTask
+          : currentTask // ignore: cast_nullable_to_non_nullable
+              as PomodoroTask?,
+      releaseTime: null == releaseTime
+          ? _value.releaseTime
+          : releaseTime // ignore: cast_nullable_to_non_nullable
+              as int,
+      pomodoroCount: null == pomodoroCount
+          ? _value.pomodoroCount
+          : pomodoroCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      state: null == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as PomodoroState,
+      settings: null == settings
+          ? _value.settings
+          : settings // ignore: cast_nullable_to_non_nullable
+              as Settings,
+    ) as $Val);
+  }
 
-
-/// @nodoc
-
-
-class _HomeState implements HomeState {
-  const _HomeState({required this.currentTask, required this.releaseTime, required this.pomodoroCount, required this.state, required this.settings});
-  
-
-@override final  PomodoroTask currentTask;
-@override final  int releaseTime;
-@override final  int pomodoroCount;
-@override final  PomodoroState state;
-@override final  Settings settings;
-
-/// Create a copy of HomeState
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$HomeStateCopyWith<_HomeState> get copyWith => __$HomeStateCopyWithImpl<_HomeState>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HomeState&&(identical(other.currentTask, currentTask) || other.currentTask == currentTask)&&(identical(other.releaseTime, releaseTime) || other.releaseTime == releaseTime)&&(identical(other.pomodoroCount, pomodoroCount) || other.pomodoroCount == pomodoroCount)&&(identical(other.state, state) || other.state == state)&&(identical(other.settings, settings) || other.settings == settings));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,currentTask,releaseTime,pomodoroCount,state,settings);
-
-@override
-String toString() {
-  return 'HomeState(currentTask: $currentTask, releaseTime: $releaseTime, pomodoroCount: $pomodoroCount, state: $state, settings: $settings)';
-}
-
-
+  @override
+  @pragma('vm:prefer-inline')
+  $SettingsCopyWith<$Res> get settings {
+    return $SettingsCopyWith<$Res>(_value.settings, (value) {
+      return _then(_value.copyWith(settings: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
-abstract mixin class _$HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
-  factory _$HomeStateCopyWith(_HomeState value, $Res Function(_HomeState) _then) = __$HomeStateCopyWithImpl;
-@override @useResult
-$Res call({
- PomodoroTask currentTask, int releaseTime, int pomodoroCount, PomodoroState state, Settings settings
-});
+abstract class _$$HomeStateImplCopyWith<$Res>
+    implements $HomeStateCopyWith<$Res> {
+  factory _$$HomeStateImplCopyWith(
+          _$HomeStateImpl value, $Res Function(_$HomeStateImpl) then) =
+      __$$HomeStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {PomodoroTask? currentTask,
+      int releaseTime,
+      int pomodoroCount,
+      PomodoroState state,
+      Settings settings});
 
-
-@override $PomodoroTaskCopyWith<$Res> get currentTask;@override $SettingsCopyWith<$Res> get settings;
-
+  @override
+  $SettingsCopyWith<$Res> get settings;
 }
+
 /// @nodoc
-class __$HomeStateCopyWithImpl<$Res>
-    implements _$HomeStateCopyWith<$Res> {
-  __$HomeStateCopyWithImpl(this._self, this._then);
+class __$$HomeStateImplCopyWithImpl<$Res>
+    extends _$HomeStateCopyWithImpl<$Res, _$HomeStateImpl>
+    implements _$$HomeStateImplCopyWith<$Res> {
+  __$$HomeStateImplCopyWithImpl(
+      _$HomeStateImpl _value, $Res Function(_$HomeStateImpl) _then)
+      : super(_value, _then);
 
-  final _HomeState _self;
-  final $Res Function(_HomeState) _then;
-
-/// Create a copy of HomeState
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? currentTask = null,Object? releaseTime = null,Object? pomodoroCount = null,Object? state = null,Object? settings = null,}) {
-  return _then(_HomeState(
-currentTask: null == currentTask ? _self.currentTask : currentTask // ignore: cast_nullable_to_non_nullable
-as PomodoroTask,releaseTime: null == releaseTime ? _self.releaseTime : releaseTime // ignore: cast_nullable_to_non_nullable
-as int,pomodoroCount: null == pomodoroCount ? _self.pomodoroCount : pomodoroCount // ignore: cast_nullable_to_non_nullable
-as int,state: null == state ? _self.state : state // ignore: cast_nullable_to_non_nullable
-as PomodoroState,settings: null == settings ? _self.settings : settings // ignore: cast_nullable_to_non_nullable
-as Settings,
-  ));
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? currentTask = freezed,
+    Object? releaseTime = null,
+    Object? pomodoroCount = null,
+    Object? state = null,
+    Object? settings = null,
+  }) {
+    return _then(_$HomeStateImpl(
+      currentTask: freezed == currentTask
+          ? _value.currentTask
+          : currentTask // ignore: cast_nullable_to_non_nullable
+              as PomodoroTask?,
+      releaseTime: null == releaseTime
+          ? _value.releaseTime
+          : releaseTime // ignore: cast_nullable_to_non_nullable
+              as int,
+      pomodoroCount: null == pomodoroCount
+          ? _value.pomodoroCount
+          : pomodoroCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      state: null == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as PomodoroState,
+      settings: null == settings
+          ? _value.settings
+          : settings // ignore: cast_nullable_to_non_nullable
+              as Settings,
+    ));
+  }
 }
 
-/// Create a copy of HomeState
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$PomodoroTaskCopyWith<$Res> get currentTask {
-  
-  return $PomodoroTaskCopyWith<$Res>(_self.currentTask, (value) {
-    return _then(_self.copyWith(currentTask: value));
-  });
-}/// Create a copy of HomeState
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$SettingsCopyWith<$Res> get settings {
-  
-  return $SettingsCopyWith<$Res>(_self.settings, (value) {
-    return _then(_self.copyWith(settings: value));
-  });
-}
+/// @nodoc
+
+class _$HomeStateImpl implements _HomeState {
+  const _$HomeStateImpl(
+      {this.currentTask,
+      required this.releaseTime,
+      required this.pomodoroCount,
+      required this.state,
+      required this.settings});
+
+  @override
+  final PomodoroTask? currentTask;
+  @override
+  final int releaseTime;
+  @override
+  final int pomodoroCount;
+  @override
+  final PomodoroState state;
+  @override
+  final Settings settings;
+
+  @override
+  String toString() {
+    return 'HomeState(currentTask: $currentTask, releaseTime: $releaseTime, pomodoroCount: $pomodoroCount, state: $state, settings: $settings)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$HomeStateImpl &&
+            (identical(other.currentTask, currentTask) ||
+                other.currentTask == currentTask) &&
+            (identical(other.releaseTime, releaseTime) ||
+                other.releaseTime == releaseTime) &&
+            (identical(other.pomodoroCount, pomodoroCount) ||
+                other.pomodoroCount == pomodoroCount) &&
+            (identical(other.state, state) || other.state == state) &&
+            (identical(other.settings, settings) ||
+                other.settings == settings));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, currentTask, releaseTime, pomodoroCount, state, settings);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>
+      __$$HomeStateImplCopyWithImpl<_$HomeStateImpl>(this, _$identity);
 }
 
-// dart format on
+abstract class _HomeState implements HomeState {
+  const factory _HomeState(
+      {final PomodoroTask? currentTask,
+      required final int releaseTime,
+      required final int pomodoroCount,
+      required final PomodoroState state,
+      required final Settings settings}) = _$HomeStateImpl;
+
+  @override
+  PomodoroTask? get currentTask;
+  @override
+  int get releaseTime;
+  @override
+  int get pomodoroCount;
+  @override
+  PomodoroState get state;
+  @override
+  Settings get settings;
+  @override
+  @JsonKey(ignore: true)
+  _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

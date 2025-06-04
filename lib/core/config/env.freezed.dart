@@ -1,4 +1,3 @@
-// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -10,139 +9,160 @@ part of 'env.dart';
 // FreezedGenerator
 // **************************************************************************
 
-// dart format off
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+
 /// @nodoc
 mixin _$EnvConfig {
+  String get appName => throw _privateConstructorUsedError;
+  String get apiBaseUrl => throw _privateConstructorUsedError;
+  bool get isDebug => throw _privateConstructorUsedError;
 
- String get appName; String get apiBaseUrl; bool get isDebug;
-/// Create a copy of EnvConfig
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$EnvConfigCopyWith<EnvConfig> get copyWith => _$EnvConfigCopyWithImpl<EnvConfig>(this as EnvConfig, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is EnvConfig&&(identical(other.appName, appName) || other.appName == appName)&&(identical(other.apiBaseUrl, apiBaseUrl) || other.apiBaseUrl == apiBaseUrl)&&(identical(other.isDebug, isDebug) || other.isDebug == isDebug));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,appName,apiBaseUrl,isDebug);
-
-@override
-String toString() {
-  return 'EnvConfig(appName: $appName, apiBaseUrl: $apiBaseUrl, isDebug: $isDebug)';
-}
-
-
+  @JsonKey(ignore: true)
+  $EnvConfigCopyWith<EnvConfig> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $EnvConfigCopyWith<$Res>  {
-  factory $EnvConfigCopyWith(EnvConfig value, $Res Function(EnvConfig) _then) = _$EnvConfigCopyWithImpl;
-@useResult
-$Res call({
- String appName, String apiBaseUrl, bool isDebug
-});
-
-
-
-
+abstract class $EnvConfigCopyWith<$Res> {
+  factory $EnvConfigCopyWith(EnvConfig value, $Res Function(EnvConfig) then) =
+      _$EnvConfigCopyWithImpl<$Res, EnvConfig>;
+  @useResult
+  $Res call({String appName, String apiBaseUrl, bool isDebug});
 }
+
 /// @nodoc
-class _$EnvConfigCopyWithImpl<$Res>
+class _$EnvConfigCopyWithImpl<$Res, $Val extends EnvConfig>
     implements $EnvConfigCopyWith<$Res> {
-  _$EnvConfigCopyWithImpl(this._self, this._then);
+  _$EnvConfigCopyWithImpl(this._value, this._then);
 
-  final EnvConfig _self;
-  final $Res Function(EnvConfig) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
-/// Create a copy of EnvConfig
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? appName = null,Object? apiBaseUrl = null,Object? isDebug = null,}) {
-  return _then(_self.copyWith(
-appName: null == appName ? _self.appName : appName // ignore: cast_nullable_to_non_nullable
-as String,apiBaseUrl: null == apiBaseUrl ? _self.apiBaseUrl : apiBaseUrl // ignore: cast_nullable_to_non_nullable
-as String,isDebug: null == isDebug ? _self.isDebug : isDebug // ignore: cast_nullable_to_non_nullable
-as bool,
-  ));
-}
-
-}
-
-
-/// @nodoc
-
-
-class _EnvConfig implements EnvConfig {
-  const _EnvConfig({required this.appName, required this.apiBaseUrl, required this.isDebug});
-  
-
-@override final  String appName;
-@override final  String apiBaseUrl;
-@override final  bool isDebug;
-
-/// Create a copy of EnvConfig
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$EnvConfigCopyWith<_EnvConfig> get copyWith => __$EnvConfigCopyWithImpl<_EnvConfig>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EnvConfig&&(identical(other.appName, appName) || other.appName == appName)&&(identical(other.apiBaseUrl, apiBaseUrl) || other.apiBaseUrl == apiBaseUrl)&&(identical(other.isDebug, isDebug) || other.isDebug == isDebug));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,appName,apiBaseUrl,isDebug);
-
-@override
-String toString() {
-  return 'EnvConfig(appName: $appName, apiBaseUrl: $apiBaseUrl, isDebug: $isDebug)';
-}
-
-
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? appName = null,
+    Object? apiBaseUrl = null,
+    Object? isDebug = null,
+  }) {
+    return _then(_value.copyWith(
+      appName: null == appName
+          ? _value.appName
+          : appName // ignore: cast_nullable_to_non_nullable
+              as String,
+      apiBaseUrl: null == apiBaseUrl
+          ? _value.apiBaseUrl
+          : apiBaseUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      isDebug: null == isDebug
+          ? _value.isDebug
+          : isDebug // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract mixin class _$EnvConfigCopyWith<$Res> implements $EnvConfigCopyWith<$Res> {
-  factory _$EnvConfigCopyWith(_EnvConfig value, $Res Function(_EnvConfig) _then) = __$EnvConfigCopyWithImpl;
-@override @useResult
-$Res call({
- String appName, String apiBaseUrl, bool isDebug
-});
-
-
-
-
+abstract class _$$EnvConfigImplCopyWith<$Res>
+    implements $EnvConfigCopyWith<$Res> {
+  factory _$$EnvConfigImplCopyWith(
+          _$EnvConfigImpl value, $Res Function(_$EnvConfigImpl) then) =
+      __$$EnvConfigImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String appName, String apiBaseUrl, bool isDebug});
 }
+
 /// @nodoc
-class __$EnvConfigCopyWithImpl<$Res>
-    implements _$EnvConfigCopyWith<$Res> {
-  __$EnvConfigCopyWithImpl(this._self, this._then);
+class __$$EnvConfigImplCopyWithImpl<$Res>
+    extends _$EnvConfigCopyWithImpl<$Res, _$EnvConfigImpl>
+    implements _$$EnvConfigImplCopyWith<$Res> {
+  __$$EnvConfigImplCopyWithImpl(
+      _$EnvConfigImpl _value, $Res Function(_$EnvConfigImpl) _then)
+      : super(_value, _then);
 
-  final _EnvConfig _self;
-  final $Res Function(_EnvConfig) _then;
-
-/// Create a copy of EnvConfig
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? appName = null,Object? apiBaseUrl = null,Object? isDebug = null,}) {
-  return _then(_EnvConfig(
-appName: null == appName ? _self.appName : appName // ignore: cast_nullable_to_non_nullable
-as String,apiBaseUrl: null == apiBaseUrl ? _self.apiBaseUrl : apiBaseUrl // ignore: cast_nullable_to_non_nullable
-as String,isDebug: null == isDebug ? _self.isDebug : isDebug // ignore: cast_nullable_to_non_nullable
-as bool,
-  ));
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? appName = null,
+    Object? apiBaseUrl = null,
+    Object? isDebug = null,
+  }) {
+    return _then(_$EnvConfigImpl(
+      appName: null == appName
+          ? _value.appName
+          : appName // ignore: cast_nullable_to_non_nullable
+              as String,
+      apiBaseUrl: null == apiBaseUrl
+          ? _value.apiBaseUrl
+          : apiBaseUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      isDebug: null == isDebug
+          ? _value.isDebug
+          : isDebug // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
+/// @nodoc
 
+class _$EnvConfigImpl implements _EnvConfig {
+  const _$EnvConfigImpl(
+      {required this.appName, required this.apiBaseUrl, required this.isDebug});
+
+  @override
+  final String appName;
+  @override
+  final String apiBaseUrl;
+  @override
+  final bool isDebug;
+
+  @override
+  String toString() {
+    return 'EnvConfig(appName: $appName, apiBaseUrl: $apiBaseUrl, isDebug: $isDebug)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EnvConfigImpl &&
+            (identical(other.appName, appName) || other.appName == appName) &&
+            (identical(other.apiBaseUrl, apiBaseUrl) ||
+                other.apiBaseUrl == apiBaseUrl) &&
+            (identical(other.isDebug, isDebug) || other.isDebug == isDebug));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, appName, apiBaseUrl, isDebug);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EnvConfigImplCopyWith<_$EnvConfigImpl> get copyWith =>
+      __$$EnvConfigImplCopyWithImpl<_$EnvConfigImpl>(this, _$identity);
 }
 
-// dart format on
+abstract class _EnvConfig implements EnvConfig {
+  const factory _EnvConfig(
+      {required final String appName,
+      required final String apiBaseUrl,
+      required final bool isDebug}) = _$EnvConfigImpl;
+
+  @override
+  String get appName;
+  @override
+  String get apiBaseUrl;
+  @override
+  bool get isDebug;
+  @override
+  @JsonKey(ignore: true)
+  _$$EnvConfigImplCopyWith<_$EnvConfigImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

@@ -8,7 +8,7 @@ part 'home_state.freezed.dart';
 @freezed
 abstract class HomeState with _$HomeState {
   const factory HomeState({
-    required PomodoroTask currentTask,
+    PomodoroTask? currentTask,
     required int releaseTime,
     required int pomodoroCount,
     required PomodoroState state,
