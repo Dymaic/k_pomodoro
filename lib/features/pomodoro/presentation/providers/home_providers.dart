@@ -35,6 +35,9 @@ class HomeStateNotifyProvider extends StateNotifier<HomeState?> {
         (state!.state == PomodoroState.idle ||
             state!.state == PomodoroState.pause ||
             state!.state == PomodoroState.breakComplete)) {
+      // 确保清理之前的定时器
+      _stopCountdownTimer();
+      
       // Change state to running
       state = state!.copyWith(state: PomodoroState.running);
 
@@ -69,6 +72,9 @@ class HomeStateNotifyProvider extends StateNotifier<HomeState?> {
   /// Only works when timer is currently paused
   void resumePomodoro() {
     if (state != null && state!.state == PomodoroState.pause) {
+      // 确保清理之前的定时器
+      _stopCountdownTimer();
+      
       // Change state back to running
       state = state!.copyWith(state: PomodoroState.running);
 
@@ -119,6 +125,9 @@ class HomeStateNotifyProvider extends StateNotifier<HomeState?> {
       return; // No state initialized
     }
 
+    // 确保清理之前的定时器
+    _stopCountdownTimer();
+
     if (state!.pomodoroCount == _defaultLongBreakPomodoroCount) {
       // If 4 pomodoros completed, start long break
       state = state!.copyWith(
@@ -154,7 +163,9 @@ class HomeStateNotifyProvider extends StateNotifier<HomeState?> {
     if (state != null &&
         (state!.state == PomodoroState.shortBreak ||
             state!.state == PomodoroState.longBreak)) {
+      // 确保完全停止当前定时器
       _stopCountdownTimer();
+      
       // Skip the break and return to idle state
       final pomodoroCount = state!.state == PomodoroState.longBreak
           ? 0
@@ -164,7 +175,9 @@ class HomeStateNotifyProvider extends StateNotifier<HomeState?> {
         pomodoroCount: pomodoroCount,
         releaseTime: _defaultPomodoroDuration, // Reset to default pomodoro time
       );
-      startPomodoro();
+      
+      // 确保状态完全更新后再启动新的番茄钟
+      Future.microtask(() => startPomodoro());
     }
   }
 
@@ -244,6 +257,13 @@ class HomeStateNotifyProvider extends StateNotifier<HomeState?> {
   int get _defaultShortBreakDuration {
     return state?.settings.shortBreakDuration ??
         AppConstants.defaultShortBreakDuration;
+  }
+
+  @override
+  void dispose() {
+    // 确保在销毁时停止定时器
+    _stopCountdownTimer();
+    super.dispose();
   }
 }
 

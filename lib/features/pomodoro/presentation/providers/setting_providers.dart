@@ -8,7 +8,7 @@ final settingLocalRepoProvider = Provider<SettingLocalRepo>((ref) {
 });
 
 final settingsServiceProvider = Provider<SettingsService>((ref) {
-  return SettingsService(settingsLocalRepo: ref.read(settingLocalRepoProvider));
+  return SettingsService.getInstance();
 });
 
 final settingStateProvider =

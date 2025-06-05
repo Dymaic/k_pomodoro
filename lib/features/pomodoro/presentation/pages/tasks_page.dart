@@ -278,6 +278,9 @@ class _TasksPageState extends ConsumerState<TasksPage> {
   }
 
   void _saveTask(BuildContext context, TaskFormState formState) async {
+    final navigator = Navigator.of(context);
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+    
     try {
       if (formState.isEditing && formState.editingTask != null) {
         // 编辑现有任务
@@ -290,9 +293,7 @@ class _TasksPageState extends ConsumerState<TasksPage> {
         await ref
             .read(pomodoroTaskListProvider.notifier)
             .updateTask(updatedTask);
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(const SnackBar(content: Text('任务更新成功')));
+        scaffoldMessenger.showSnackBar(const SnackBar(content: Text('任务更新成功')));
       } else {
         // 创建新任务
         final newTask = PomodoroTask.create(
@@ -303,15 +304,11 @@ class _TasksPageState extends ConsumerState<TasksPage> {
           createdAt: DateTime.now(),
         );
         await ref.read(pomodoroTaskListProvider.notifier).createTask(newTask);
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(const SnackBar(content: Text('任务添加成功')));
+        scaffoldMessenger.showSnackBar(const SnackBar(content: Text('任务添加成功')));
       }
-      Navigator.of(context).pop();
+      navigator.pop();
     } catch (error) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('操作失败: $error')));
+      scaffoldMessenger.showSnackBar(SnackBar(content: Text('操作失败: $error')));
     }
   }
 

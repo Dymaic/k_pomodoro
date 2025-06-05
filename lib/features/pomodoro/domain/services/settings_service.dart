@@ -2,10 +2,18 @@ import 'package:k_pomodoro/features/pomodoro/domain/entities/settings.dart';
 import 'package:k_pomodoro/features/pomodoro/domain/repositories/setting/setting_local_repo.dart';
 
 class SettingsService {
-
+  static SettingsService? _instance;
   final SettingLocalRepo settingsLocalRepo;
 
-  SettingsService({required this.settingsLocalRepo});
+  SettingsService._({required this.settingsLocalRepo});
+
+  /// 获取单例实例
+  static SettingsService getInstance() {
+    _instance ??= SettingsService._(
+      settingsLocalRepo: SettingLocalRepo.getInstance(),
+    );
+    return _instance!;
+  }
   
   /// 获取当前设置
   Future<Settings> getCurrentSettings() async {
@@ -45,13 +53,16 @@ class SettingsService {
 
   /// 检查设置是否已初始化
   Future<bool> isSettingsInitialized() async {
-    // 检查是否存在设置数据
-    return settingsLocalRepo.getPomodoroMinutes() != null &&
-           settingsLocalRepo.getShortBreakMinutes() != null &&
-           settingsLocalRepo.getLongBreakMinutes() != null &&
-           settingsLocalRepo.getLongBreakInterval() != null &&
-           settingsLocalRepo.getAutoStartNext() != null &&
-           settingsLocalRepo.getAutoStartBreak() != null;
+    // 检查是否存在关键设置数据，通过检查是否有自定义设置来判断
+    try {
+      // 如果存在任何非默认值的设置，认为已初始化
+      return settingsLocalRepo.containsSetting('pomodoro_minutes') ||
+          settingsLocalRepo.containsSetting('short_break_minutes') ||
+          settingsLocalRepo.containsSetting('long_break_minutes') ||
+          settingsLocalRepo.containsSetting('long_break_interval');
+    } catch (e) {
+      return false;
+    }
   }
 
   /// 初始化设置
