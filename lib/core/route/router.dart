@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:k_pomodoro/features/pomodoro/presentation/pages/home_page.dart';
 import 'package:k_pomodoro/features/pomodoro/presentation/pages/setting_page.dart';
-import 'package:k_pomodoro/features/pomodoro/presentation/pages/tasks_page.dart';
+import 'package:k_pomodoro/features/pomodoro/presentation/pages/tasks/tasks_page.dart';
 
 final router = GoRouter(
   routes: [

@@ -9,6 +9,8 @@ class PomodoroTask {
   late String title;
   String? description;
   bool isCompleted = false;
+  late DateTime? startTime;
+  late DateTime? dueTime;
   late DateTime createdAt;
   DateTime? completedAt;
   int pomodoroCount = 0;
@@ -19,6 +21,8 @@ class PomodoroTask {
     required this.title,
     this.description,
     this.isCompleted = false,
+    this.startTime,
+    this.dueTime,
     required this.createdAt,
     this.completedAt,
     this.pomodoroCount = 0,
@@ -37,6 +41,8 @@ class PomodoroTask {
     String? title,
     String? description,
     bool? isCompleted,
+    DateTime? startTime,
+    DateTime? dueTime,
     DateTime? createdAt,
     DateTime? completedAt,
     int? pomodoroCount,
@@ -45,6 +51,8 @@ class PomodoroTask {
       title: title ?? this.title,
       description: description ?? this.description,
       isCompleted: isCompleted ?? this.isCompleted,
+      startTime: startTime ?? this.startTime,
+      dueTime: dueTime ?? this.dueTime,
       createdAt: createdAt ?? this.createdAt,
       completedAt: completedAt ?? this.completedAt,
       pomodoroCount: pomodoroCount ?? this.pomodoroCount,
@@ -62,6 +70,8 @@ class PomodoroTask {
           title == other.title &&
           description == other.description &&
           isCompleted == other.isCompleted &&
+          startTime == other.startTime &&
+          dueTime == other.dueTime &&
           createdAt == other.createdAt &&
           completedAt == other.completedAt &&
           pomodoroCount == other.pomodoroCount;
@@ -72,12 +82,14 @@ class PomodoroTask {
       title.hashCode ^
       description.hashCode ^
       isCompleted.hashCode ^
+      startTime.hashCode ^
+      dueTime.hashCode ^
       createdAt.hashCode ^
       completedAt.hashCode ^
       pomodoroCount.hashCode;
 
   @override
   String toString() {
-    return 'PomodoroTask{id: $id, title: $title, description: $description, isCompleted: $isCompleted, createdAt: $createdAt, completedAt: $completedAt, pomodoroCount: $pomodoroCount}';
+    return 'PomodoroTask{id: $id, title: $title, description: $description, isCompleted: $isCompleted, startTime: $startTime, dueTime: $dueTime, createdAt: $createdAt, completedAt: $completedAt, pomodoroCount: $pomodoroCount}';
   }
 }

@@ -32,23 +32,33 @@ const PomodoroTaskSchema = CollectionSchema(
       name: r'description',
       type: IsarType.string,
     ),
-    r'hashCode': PropertySchema(
+    r'dueTime': PropertySchema(
       id: 3,
+      name: r'dueTime',
+      type: IsarType.dateTime,
+    ),
+    r'hashCode': PropertySchema(
+      id: 4,
       name: r'hashCode',
       type: IsarType.long,
     ),
     r'isCompleted': PropertySchema(
-      id: 4,
+      id: 5,
       name: r'isCompleted',
       type: IsarType.bool,
     ),
     r'pomodoroCount': PropertySchema(
-      id: 5,
+      id: 6,
       name: r'pomodoroCount',
       type: IsarType.long,
     ),
+    r'startTime': PropertySchema(
+      id: 7,
+      name: r'startTime',
+      type: IsarType.dateTime,
+    ),
     r'title': PropertySchema(
-      id: 6,
+      id: 8,
       name: r'title',
       type: IsarType.string,
     )
@@ -92,10 +102,12 @@ void _pomodoroTaskSerialize(
   writer.writeDateTime(offsets[0], object.completedAt);
   writer.writeDateTime(offsets[1], object.createdAt);
   writer.writeString(offsets[2], object.description);
-  writer.writeLong(offsets[3], object.hashCode);
-  writer.writeBool(offsets[4], object.isCompleted);
-  writer.writeLong(offsets[5], object.pomodoroCount);
-  writer.writeString(offsets[6], object.title);
+  writer.writeDateTime(offsets[3], object.dueTime);
+  writer.writeLong(offsets[4], object.hashCode);
+  writer.writeBool(offsets[5], object.isCompleted);
+  writer.writeLong(offsets[6], object.pomodoroCount);
+  writer.writeDateTime(offsets[7], object.startTime);
+  writer.writeString(offsets[8], object.title);
 }
 
 PomodoroTask _pomodoroTaskDeserialize(
@@ -108,10 +120,12 @@ PomodoroTask _pomodoroTaskDeserialize(
   object.completedAt = reader.readDateTimeOrNull(offsets[0]);
   object.createdAt = reader.readDateTime(offsets[1]);
   object.description = reader.readStringOrNull(offsets[2]);
+  object.dueTime = reader.readDateTimeOrNull(offsets[3]);
   object.id = id;
-  object.isCompleted = reader.readBool(offsets[4]);
-  object.pomodoroCount = reader.readLong(offsets[5]);
-  object.title = reader.readString(offsets[6]);
+  object.isCompleted = reader.readBool(offsets[5]);
+  object.pomodoroCount = reader.readLong(offsets[6]);
+  object.startTime = reader.readDateTimeOrNull(offsets[7]);
+  object.title = reader.readString(offsets[8]);
   return object;
 }
 
@@ -129,12 +143,16 @@ P _pomodoroTaskDeserializeProp<P>(
     case 2:
       return (reader.readStringOrNull(offset)) as P;
     case 3:
-      return (reader.readLong(offset)) as P;
+      return (reader.readDateTimeOrNull(offset)) as P;
     case 4:
-      return (reader.readBool(offset)) as P;
-    case 5:
       return (reader.readLong(offset)) as P;
+    case 5:
+      return (reader.readBool(offset)) as P;
     case 6:
+      return (reader.readLong(offset)) as P;
+    case 7:
+      return (reader.readDateTimeOrNull(offset)) as P;
+    case 8:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -520,6 +538,80 @@ extension PomodoroTaskQueryFilter
   }
 
   QueryBuilder<PomodoroTask, PomodoroTask, QAfterFilterCondition>
+      dueTimeIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'dueTime',
+      ));
+    });
+  }
+
+  QueryBuilder<PomodoroTask, PomodoroTask, QAfterFilterCondition>
+      dueTimeIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'dueTime',
+      ));
+    });
+  }
+
+  QueryBuilder<PomodoroTask, PomodoroTask, QAfterFilterCondition>
+      dueTimeEqualTo(DateTime? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'dueTime',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<PomodoroTask, PomodoroTask, QAfterFilterCondition>
+      dueTimeGreaterThan(
+    DateTime? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'dueTime',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<PomodoroTask, PomodoroTask, QAfterFilterCondition>
+      dueTimeLessThan(
+    DateTime? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'dueTime',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<PomodoroTask, PomodoroTask, QAfterFilterCondition>
+      dueTimeBetween(
+    DateTime? lower,
+    DateTime? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'dueTime',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<PomodoroTask, PomodoroTask, QAfterFilterCondition>
       hashCodeEqualTo(int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -686,6 +778,80 @@ extension PomodoroTaskQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
         property: r'pomodoroCount',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<PomodoroTask, PomodoroTask, QAfterFilterCondition>
+      startTimeIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'startTime',
+      ));
+    });
+  }
+
+  QueryBuilder<PomodoroTask, PomodoroTask, QAfterFilterCondition>
+      startTimeIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'startTime',
+      ));
+    });
+  }
+
+  QueryBuilder<PomodoroTask, PomodoroTask, QAfterFilterCondition>
+      startTimeEqualTo(DateTime? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'startTime',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<PomodoroTask, PomodoroTask, QAfterFilterCondition>
+      startTimeGreaterThan(
+    DateTime? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'startTime',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<PomodoroTask, PomodoroTask, QAfterFilterCondition>
+      startTimeLessThan(
+    DateTime? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'startTime',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<PomodoroTask, PomodoroTask, QAfterFilterCondition>
+      startTimeBetween(
+    DateTime? lower,
+    DateTime? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'startTime',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -875,6 +1041,18 @@ extension PomodoroTaskQuerySortBy
     });
   }
 
+  QueryBuilder<PomodoroTask, PomodoroTask, QAfterSortBy> sortByDueTime() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dueTime', Sort.asc);
+    });
+  }
+
+  QueryBuilder<PomodoroTask, PomodoroTask, QAfterSortBy> sortByDueTimeDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dueTime', Sort.desc);
+    });
+  }
+
   QueryBuilder<PomodoroTask, PomodoroTask, QAfterSortBy> sortByHashCode() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'hashCode', Sort.asc);
@@ -910,6 +1088,18 @@ extension PomodoroTaskQuerySortBy
       sortByPomodoroCountDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'pomodoroCount', Sort.desc);
+    });
+  }
+
+  QueryBuilder<PomodoroTask, PomodoroTask, QAfterSortBy> sortByStartTime() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'startTime', Sort.asc);
+    });
+  }
+
+  QueryBuilder<PomodoroTask, PomodoroTask, QAfterSortBy> sortByStartTimeDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'startTime', Sort.desc);
     });
   }
 
@@ -966,6 +1156,18 @@ extension PomodoroTaskQuerySortThenBy
     });
   }
 
+  QueryBuilder<PomodoroTask, PomodoroTask, QAfterSortBy> thenByDueTime() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dueTime', Sort.asc);
+    });
+  }
+
+  QueryBuilder<PomodoroTask, PomodoroTask, QAfterSortBy> thenByDueTimeDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dueTime', Sort.desc);
+    });
+  }
+
   QueryBuilder<PomodoroTask, PomodoroTask, QAfterSortBy> thenByHashCode() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'hashCode', Sort.asc);
@@ -1016,6 +1218,18 @@ extension PomodoroTaskQuerySortThenBy
     });
   }
 
+  QueryBuilder<PomodoroTask, PomodoroTask, QAfterSortBy> thenByStartTime() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'startTime', Sort.asc);
+    });
+  }
+
+  QueryBuilder<PomodoroTask, PomodoroTask, QAfterSortBy> thenByStartTimeDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'startTime', Sort.desc);
+    });
+  }
+
   QueryBuilder<PomodoroTask, PomodoroTask, QAfterSortBy> thenByTitle() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'title', Sort.asc);
@@ -1050,6 +1264,12 @@ extension PomodoroTaskQueryWhereDistinct
     });
   }
 
+  QueryBuilder<PomodoroTask, PomodoroTask, QDistinct> distinctByDueTime() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'dueTime');
+    });
+  }
+
   QueryBuilder<PomodoroTask, PomodoroTask, QDistinct> distinctByHashCode() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'hashCode');
@@ -1066,6 +1286,12 @@ extension PomodoroTaskQueryWhereDistinct
       distinctByPomodoroCount() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'pomodoroCount');
+    });
+  }
+
+  QueryBuilder<PomodoroTask, PomodoroTask, QDistinct> distinctByStartTime() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'startTime');
     });
   }
 
@@ -1104,6 +1330,12 @@ extension PomodoroTaskQueryProperty
     });
   }
 
+  QueryBuilder<PomodoroTask, DateTime?, QQueryOperations> dueTimeProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'dueTime');
+    });
+  }
+
   QueryBuilder<PomodoroTask, int, QQueryOperations> hashCodeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'hashCode');
@@ -1119,6 +1351,12 @@ extension PomodoroTaskQueryProperty
   QueryBuilder<PomodoroTask, int, QQueryOperations> pomodoroCountProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'pomodoroCount');
+    });
+  }
+
+  QueryBuilder<PomodoroTask, DateTime?, QQueryOperations> startTimeProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'startTime');
     });
   }
 
