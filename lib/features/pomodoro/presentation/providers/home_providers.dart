@@ -8,13 +8,18 @@ import 'package:k_pomodoro/features/pomodoro/domain/entities/settings.dart';
 import 'package:k_pomodoro/features/pomodoro/enums/pomodoro_enum.dart';
 import 'package:k_pomodoro/features/pomodoro/presentation/providers/home_state.dart';
 import 'package:k_pomodoro/features/pomodoro/presentation/providers/setting_providers.dart';
+import 'package:k_pomodoro/features/pomodoro/domain/services/pomodoro_service.dart';
+import 'package:k_pomodoro/features/pomodoro/presentation/providers/pomodoro_task_providers.dart';
 
 /// StateNotifier that manages the Pomodoro timer state and functionality
 /// Handles timer operations, state transitions, and break management
 class HomeStateNotifyProvider extends StateNotifier<HomeState?> {
+  final PomodoroService _pomodoroService;
+  
   /// Initialize with default Pomodoro settings
   /// Default work session: 25 minutes, idle state
-  HomeStateNotifyProvider(Settings settings) : super(null) {
+  HomeStateNotifyProvider(Settings settings, this._pomodoroService)
+    : super(null) {
     state = HomeState(
       currentTask: null, // No task selected initially
       releaseTime: settings.pomodoroDuration, // Default to 25 minutes
@@ -30,30 +35,62 @@ class HomeStateNotifyProvider extends StateNotifier<HomeState?> {
 
   /// Start a new Pomodoro work session
   /// Only works when current state is idle
-  void startPomodoro() {
+  /// If no task is selected but inputTaskName is provided, creates a new task
+  void startPomodoro([String? inputTaskName]) async {
     if (state != null &&
         (state!.state == PomodoroState.idle ||
             state!.state == PomodoroState.pause ||
             state!.state == PomodoroState.breakComplete)) {
-      // 确保清理之前的定时器
-      _stopCountdownTimer();
-      
-      // Change state to running
-      state = state!.copyWith(state: PomodoroState.running);
-
-      // Start countdown with work completion logic
-      _startCountdownTimer(() {
-        // Work session completed, transition to completion state
-        state = state!.copyWith(
-          state: PomodoroState.runningComplete,
-          releaseTime: 0,
-          pomodoroCount: state!.pomodoroCount + 1, // Increment count
-        );
-        if (state!.settings.isAutoStartBreak) {
-          // Automatically start break if enabled in settings
-          startBreak();
+            
+      // If no current task but we have input task name, create a new task
+      if (state!.currentTask == null &&
+          inputTaskName != null &&
+          inputTaskName.isNotEmpty) {
+        try {
+          final newTask = PomodoroTask.create(
+            title: inputTaskName,
+            pomodoroCount: 1,
+            createdAt: DateTime.now(),
+          );
+          final taskId = await _pomodoroService.createTask(newTask);
+          final createdTask = await _pomodoroService.getTaskById(taskId);
+          if (createdTask != null) {
+            state = state!.copyWith(currentTask: createdTask);
+          } else {
+            // Failed to create or retrieve task, don't start timer
+            print('Failed to create or retrieve task');
+            return;
+          }
+        } catch (e) {
+          // Handle error creating task, don't start timer
+          print('Error creating task: $e');
+          return;
         }
-      });
+      }
+
+      // Only start timer if we have a current task or if no task name was provided
+      if (state!.currentTask != null ||
+          (inputTaskName == null || inputTaskName.isEmpty)) {
+        // 确保清理之前的定时器
+        _stopCountdownTimer();
+
+        // Change state to running
+        state = state!.copyWith(state: PomodoroState.running);
+
+        // Start countdown with work completion logic
+        _startCountdownTimer(() {
+          // Work session completed, transition to completion state
+          state = state!.copyWith(
+            state: PomodoroState.runningComplete,
+            releaseTime: 0,
+            pomodoroCount: state!.pomodoroCount + 1, // Increment count
+          );
+          if (state!.settings.isAutoStartBreak) {
+            // Automatically start break if enabled in settings
+            startBreak();
+          }
+        });
+      }
     }
   }
 
@@ -115,6 +152,12 @@ class HomeStateNotifyProvider extends StateNotifier<HomeState?> {
   void setCurrentTask(PomodoroTask task) {
     if (state != null) {
       state = state!.copyWith(currentTask: task);
+    }
+  }
+
+  void clearCurrentTask() {
+    if (state != null) {
+      state = state!.copyWith(currentTask: null);
     }
   }
 
@@ -271,5 +314,8 @@ class HomeStateNotifyProvider extends StateNotifier<HomeState?> {
 /// Used by UI components to access and modify Pomodoro timer state
 final homeStateProvider =
     StateNotifierProvider<HomeStateNotifyProvider, HomeState?>(
-      (ref) => HomeStateNotifyProvider(ref.read(settingStateProvider)),
+      (ref) => HomeStateNotifyProvider(
+        ref.read(settingStateProvider),
+        ref.read(pomodoroServiceProvider),
+      ),
     );
