@@ -103,8 +103,9 @@ class _TasksPageState extends ConsumerState<TasksPage> {
   }
 
   Widget _buildTaskCard(BuildContext context, PomodoroTask task) {
-    return GestureDetector(
+    return InkWell(
       onTap: () => _showEditTaskDialog(context, task),
+      borderRadius: BorderRadius.circular(12),
       child: Container(
         margin: const EdgeInsets.only(bottom: 8),
         padding: const EdgeInsets.all(12),
