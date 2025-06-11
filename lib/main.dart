@@ -4,13 +4,27 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:k_pomodoro/core/database/isar_database.dart';
 import 'package:k_pomodoro/core/route/router.dart';
 import 'package:k_pomodoro/features/pomodoro/domain/repositories/setting/setting_local_repo.dart';
+import 'package:k_pomodoro/features/pomodoro/domain/services/settings_service.dart';
 import 'package:k_skin/k_skin.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  await SettingLocalRepo.getInstance().init();
-  await IsarDatabase.getInstance();
+  
+  try {
+    // 初始化设置仓库
+    await SettingLocalRepo.getInstance().init();
+    
+    // 初始化 Isar 数据库
+    await IsarDatabase.getInstance();
+    
+    // 初始化设置服务并确保默认设置
+    final settingsService = SettingsService.getInstance();
+    await settingsService.initializeSettings();
+  } catch (e) {
+    // 如果初始化失败，记录错误但继续启动应用
+    debugPrint('Initialization error: $e');
+  }
 
   runApp(
     EasyLocalization(

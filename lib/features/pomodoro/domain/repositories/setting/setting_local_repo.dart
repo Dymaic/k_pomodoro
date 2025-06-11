@@ -7,6 +7,7 @@ import 'package:path_provider/path_provider.dart';
 class SettingLocalRepo {
   late Box<dynamic> _settingsBox;
   static SettingLocalRepo? _instance;
+  static bool _isInitialized = false;
 
   SettingLocalRepo._();
 
@@ -17,11 +18,44 @@ class SettingLocalRepo {
   }
 
   Future<void> init() async {
-    // Initialize Hive with app documents directory
-    final directory = await getApplicationDocumentsDirectory();
-    Hive.init(directory.path);
+    // 防止重复初始化，避免锁文件冲突
+    if (_isInitialized) {
+      return;
+    }
 
-    _settingsBox = await Hive.openBox('setting');
+    try {
+      // Initialize Hive with app documents directory
+      final directory = await getApplicationDocumentsDirectory();
+      
+      // 检查 Hive 是否已经初始化过，通过捕获异常来判断
+      try {
+        Hive.init(directory.path);
+      } catch (e) {
+        // Hive 已经初始化过，忽略错误
+      }
+
+      _settingsBox = await Hive.openBox('setting');
+      _isInitialized = true;
+    } catch (e) {
+      // 如果出现锁文件冲突，尝试关闭并重新打开
+      try {
+        await Hive.close();
+        final directory = await getApplicationDocumentsDirectory();
+        Hive.init(directory.path);
+        _settingsBox = await Hive.openBox('setting');
+        _isInitialized = true;
+      } catch (retryError) {
+        throw Exception('Failed to initialize Hive settings: $retryError');
+      }
+    }
+  }
+
+  /// 释放资源
+  Future<void> dispose() async {
+    if (_isInitialized) {
+      await _settingsBox.close();
+      _isInitialized = false;
+    }
   }
 
   // 番茄钟时长设置
