@@ -235,7 +235,7 @@ class _HomePageState extends ConsumerState<HomePage> {
     if (homeState?.currentTask == null) {
       return Card(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
           child: Column(
             children: [
               if (homeState?.state != PomodoroState.running &&
@@ -265,33 +265,14 @@ class _HomePageState extends ConsumerState<HomePage> {
                         padding: EdgeInsets.zero,
                         iconSize: 16,
                         icon: const Icon(Icons.change_circle_outlined),
-            onPressed: () => context.go('/tasks'),
+                        onPressed: () => context.go('/tasks'),
                       ),
                     ),
                   ],
                 ),
               if (homeState?.state == PomodoroState.running ||
                   homeState?.state == PomodoroState.pause) ...[
-                const SizedBox(height: 8),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
-                    child: LinearProgressIndicator(
-                      value: () {
-                        final settingState = ref.watch(settingStateProvider);
-                        final totalTime = settingState.pomodoroDuration;
-                        return totalTime > 0
-                            ? (totalTime - homeState!.releaseTime) / totalTime
-                            : 0.0;
-                      }(),
-                      backgroundColor: Colors.grey[300],
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        KThemeManager.instance.currentTheme.colorScheme.primary,
-                      ),
-                    ),
-                  ),
-                ),
+                _buildProgressBar(ref, homeState!),
               ],
             ],
           ),
@@ -302,7 +283,7 @@ class _HomePageState extends ConsumerState<HomePage> {
     final task = homeState!.currentTask!;
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
         child: Column(
           children: [
             Row(
@@ -370,29 +351,28 @@ class _HomePageState extends ConsumerState<HomePage> {
             if (homeState.state == PomodoroState.running ||
                 homeState.state == PomodoroState.pause) ...[
               const SizedBox(height: 8),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 300),
-                  child: LinearProgressIndicator(
-                    value: () {
-                      final settingState = ref.watch(settingStateProvider);
-                      final totalTime = settingState.pomodoroDuration; // 转换为秒
-                      return totalTime > 0
-                          ? (totalTime - homeState.releaseTime) / totalTime
-                          : 0.0;
-                    }(),
-                    backgroundColor: Colors.grey[300],
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                      KThemeManager.instance.currentTheme.colorScheme.primary,
-                    ),
-                  ),
-                ),
-              ),
+              _buildProgressBar(ref, homeState),
             ],
           ],
         ),
-      )
+      ),
+    );
+  }
+
+  /// Build progress bar for Pomodoro timer
+  Widget _buildProgressBar(WidgetRef ref, HomeState homeState) {
+    final settingState = ref.watch(settingStateProvider);
+    final totalDuration =
+        homeState.state == PomodoroState.running ||
+            homeState.state == PomodoroState.pause
+        ? settingState.pomodoroDuration
+        : settingState.shortBreakDuration;
+
+    final progress = (totalDuration - homeState.releaseTime) / totalDuration;
+
+    return LinearProgressIndicator(
+      value: progress.clamp(0.0, 1.0),
+      backgroundColor: Colors.grey[300],
     );
   }
 }

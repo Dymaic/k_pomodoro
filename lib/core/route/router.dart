@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:k_pomodoro/features/pomodoro/presentation/pages/about_page.dart';
 import 'package:k_pomodoro/features/pomodoro/presentation/pages/home_page.dart';
 import 'package:k_pomodoro/features/pomodoro/presentation/pages/setting_page.dart';
 import 'package:k_pomodoro/features/pomodoro/presentation/pages/tasks/tasks_page.dart';
@@ -22,6 +23,12 @@ final router = GoRouter(
       builder: (context, state) {
         return const TasksPage(); // Replace with your task list page
       },
-    )
+    ),
+    GoRoute(
+      path: "/about",
+      builder: (context, state) {
+        return const AboutPage();
+      },
+    ),
   ],
 );

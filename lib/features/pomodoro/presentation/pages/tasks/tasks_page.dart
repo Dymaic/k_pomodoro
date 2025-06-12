@@ -94,6 +94,7 @@ class _TasksPageState extends ConsumerState<TasksPage> {
 
     return ListView.builder(
       padding: const EdgeInsets.all(16),
+      physics: const AlwaysScrollableScrollPhysics(),
       itemCount: tasks.length,
       itemBuilder: (context, index) {
         final task = tasks[index];
